@@ -4,6 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Engineer Quiz</title>
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-THSFGEH018"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-THSFGEH018');
+    </script>
+    
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -744,6 +754,10 @@
 
         function startQuiz(category) {
             selectedCategory = category;
+                gtag('event', 'quiz_start', {
+                  'quiz_category': category,
+                  'user_nickname': userNickname
+                });
             currentQuiz = selectQuestions(category);
             currentQuestionIndex = 0;
             score = 0;
@@ -845,7 +859,12 @@
             } else {
                 performanceMessage = 'Consider reviewing the topics and practicing more.';
             }
-            
+                gtag('event', 'quiz_complete', {
+                  'quiz_category': selectedCategory,
+                  'score': score,
+                  'total': currentQuiz.length,
+                  'percentage': percentage
+                });
             document.getElementById('scoreDisplay').innerHTML = `
                 <div style="color: #64b5f6; font-size: 1.6em; margin-bottom: 8px;">${score} out of ${currentQuiz.length}</div>
                 <div style="color: #81c784; font-size: 1.2em; margin-bottom: 12px;">${percentage}%</div>
