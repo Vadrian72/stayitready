@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+// Questions database - temporary fallback until questions.json is created
+        let questionsDB = {
+            sql: {
+                easy: [
+                    { question: "Which SQL statement is used to extract data from a database?", options: ["SELECT", "EXTRACT", "GET", "OPEN"], correct: 0, tip: "SELECT is the fundamental statement for querying data." },
+                    { question: "Which clause is used to filter rows before grouping?", options: ["WHERE", "HAVING", "FILTER", "CONDITION"], correct: 0, tip: "WHERE clause filters individual rows before GROUP BY." },
+                    { question: "What does the SQL INSERT statement do?", options: ["Adds new records to a table", "Updates existing records", "Deletes records", "Creates a new table"], correct: 0, tip: "INSERT statement adds new rows to an existing table." },
+                    { question: "Which operator is used for pattern matching?", options: ["LIKE", "MATCH", "FIND", "SEARCH"], correct: 0, tip: "LIKE operator is used with wildcards for pattern matching." },
+                    { question: "What does NULL represent in SQL?", options: ["Missing or unknown value", "Zero value", "Empty string", "False value"], correct: 0, tip: "NULL represents the absence of a value." },
+                    { question: "Which statement modifies existing data?", options: ["UPDATE", "MODIFY", "CHANGE", "ALTER"], correct: 0, tip: "UPDATE statement modifies existing records in a table." },
+                    { question: "How do you delete all records from a table?", options: ["DELETE FROM table_name", "REMOVE * FROM table_name", "DROP ALL FROM table_name", "CLEAR table_name"], correct: 0, tip: "DELETE FROM removes all rows while preserving table structure." },
+                    { question: "Which clause sorts the result set?", options: ["ORDER BY", "SORT BY", "GROUP BY", "ARRANGE BY"], correct: 0, tip: "ORDER BY sorts results in ascending or descending order." },
+                    { question: "What does the DISTINCT keyword do?", options: ["Returns only unique values", "Counts rows", "Sorts results", "Groups results"], correct: 0, tip: "DISTINCT eliminates duplicate rows from the result set." },
+                    { question: "Which function counts rows?", options: ["COUNT()", "SUM()", "NUMBER()", "TOTAL()"], correct: 0, tip: "COUNT() returns the number of rows that match a condition." }
+                ],
+                medium: [
+                    { question: "What type of join returns all<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -737,12 +753,18 @@
             <h3>Send Feedback</h3>
             <p style="color: #e0e0e0; margin-bottom: 20px;">Have a suggestion, found a bug, or want to share your thoughts? We'd love to hear from you!</p>
             
-            <textarea id="feedbackText" class="feedback-textarea" placeholder="Enter your feedback here..." maxlength="1000"></textarea>
-            
-            <div class="feedback-buttons">
-                <button class="feedback-cancel" onclick="closeFeedbackModal()">Cancel</button>
-                <button class="feedback-submit" onclick="sendFeedback()">Send Feedback</button>
-            </div>
+            <form name="feedback" method="POST" data-netlify="true" id="feedbackForm">
+                <input type="hidden" name="form-name" value="feedback" />
+                <input type="hidden" name="user-nickname" id="hiddenNickname" />
+                <input type="hidden" name="page-url" id="hiddenPageUrl" />
+                
+                <textarea name="message" id="feedbackText" class="feedback-textarea" placeholder="Enter your feedback here..." maxlength="1000" required></textarea>
+                
+                <div class="feedback-buttons">
+                    <button type="button" class="feedback-cancel" onclick="closeFeedbackModal()">Cancel</button>
+                    <button type="submit" class="feedback-submit">Send Feedback</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -892,6 +914,9 @@
 
         // Feedback modal functions
         function showFeedbackModal() {
+            // Set hidden fields with current data
+            document.getElementById('hiddenNickname').value = userNickname || 'Anonymous';
+            document.getElementById('hiddenPageUrl').value = window.location.href;
             document.getElementById('feedbackModal').style.display = 'flex';
         }
 
@@ -900,30 +925,37 @@
             document.getElementById('feedbackText').value = '';
         }
 
-        function sendFeedback() {
-            const feedbackText = document.getElementById('feedbackText').value.trim();
-            
-            if (!feedbackText) {
-                alert('Please enter your feedback before sending.');
-                return;
+        // Handle form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            if (feedbackForm) {
+                feedbackForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = new FormData(feedbackForm);
+                    
+                    fetch('/', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                        body: new URLSearchParams(formData).toString()
+                    })
+                    .then(() => {
+                        // Success message
+                        alert('Thank you for your feedback! We\'ll review it soon.');
+                        closeFeedbackModal();
+                        
+                        // Track feedback event
+                        gtag('event', 'feedback_sent', {
+                            'method': 'netlify_forms'
+                        });
+                    })
+                    .catch((error) => {
+                        alert('Sorry, there was an error sending your feedback. Please try again.');
+                        console.error('Error:', error);
+                    });
+                });
             }
-
-            // Create mailto link
-            const subject = encodeURIComponent('IT Quiz Platform Feedback');
-            const body = encodeURIComponent(`Feedback from user: ${userNickname || 'Anonymous'}\n\n${feedbackText}\n\nSent from: ${window.location.href}`);
-            const mailtoLink = `mailto:customersupport@stayitready.com?subject=${subject}&body=${body}`;
-            
-            // Open email client
-            window.location.href = mailtoLink;
-            
-            // Close modal
-            closeFeedbackModal();
-            
-            // Track feedback event
-            gtag('event', 'feedback_sent', {
-                'method': 'email'
-            });
-        }
+        });
 
         // Close modals with ESC key
         document.addEventListener('keydown', function(event) {
