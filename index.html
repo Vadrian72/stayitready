@@ -1,20 +1,4 @@
-// Questions database - temporary fallback until questions.json is created
-        let questionsDB = {
-            sql: {
-                easy: [
-                    { question: "Which SQL statement is used to extract data from a database?", options: ["SELECT", "EXTRACT", "GET", "OPEN"], correct: 0, tip: "SELECT is the fundamental statement for querying data." },
-                    { question: "Which clause is used to filter rows before grouping?", options: ["WHERE", "HAVING", "FILTER", "CONDITION"], correct: 0, tip: "WHERE clause filters individual rows before GROUP BY." },
-                    { question: "What does the SQL INSERT statement do?", options: ["Adds new records to a table", "Updates existing records", "Deletes records", "Creates a new table"], correct: 0, tip: "INSERT statement adds new rows to an existing table." },
-                    { question: "Which operator is used for pattern matching?", options: ["LIKE", "MATCH", "FIND", "SEARCH"], correct: 0, tip: "LIKE operator is used with wildcards for pattern matching." },
-                    { question: "What does NULL represent in SQL?", options: ["Missing or unknown value", "Zero value", "Empty string", "False value"], correct: 0, tip: "NULL represents the absence of a value." },
-                    { question: "Which statement modifies existing data?", options: ["UPDATE", "MODIFY", "CHANGE", "ALTER"], correct: 0, tip: "UPDATE statement modifies existing records in a table." },
-                    { question: "How do you delete all records from a table?", options: ["DELETE FROM table_name", "REMOVE * FROM table_name", "DROP ALL FROM table_name", "CLEAR table_name"], correct: 0, tip: "DELETE FROM removes all rows while preserving table structure." },
-                    { question: "Which clause sorts the result set?", options: ["ORDER BY", "SORT BY", "GROUP BY", "ARRANGE BY"], correct: 0, tip: "ORDER BY sorts results in ascending or descending order." },
-                    { question: "What does the DISTINCT keyword do?", options: ["Returns only unique values", "Counts rows", "Sorts results", "Groups results"], correct: 0, tip: "DISTINCT eliminates duplicate rows from the result set." },
-                    { question: "Which function counts rows?", options: ["COUNT()", "SUM()", "NUMBER()", "TOTAL()"], correct: 0, tip: "COUNT() returns the number of rows that match a condition." }
-                ],
-                medium: [
-                    { question: "What type of join returns all<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -850,6 +834,10 @@
     <div id="shareableResult" class="shareable-result">
         <div class="logo-section">
             <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
+    <!-- Hidden shareable result for screenshot -->
+    <div id="shareableResult" class="shareable-result">
+        <div class="logo-section">
+            <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
             <div style="font-size: 1.5em; color: #64b5f6; font-weight: bold;">stay IT ready</div>
         </div>
         <div class="score-section" id="shareScore">I just scored 10/12!</div>
@@ -896,7 +884,6 @@
                 console.log('Questions loaded successfully');
             } catch (error) {
                 console.error('Error loading questions:', error);
-                // Fallback: show error message to user
                 alert('Failed to load quiz questions. Please refresh the page and try again.');
             }
         }
@@ -914,7 +901,6 @@
 
         // Feedback modal functions
         function showFeedbackModal() {
-            // Set hidden fields with current data
             document.getElementById('hiddenNickname').value = userNickname || 'Anonymous';
             document.getElementById('hiddenPageUrl').value = window.location.href;
             document.getElementById('feedbackModal').style.display = 'flex';
@@ -940,11 +926,9 @@
                         body: new URLSearchParams(formData).toString()
                     })
                     .then(() => {
-                        // Success message
                         alert('Thank you for your feedback! We\'ll review it soon.');
                         closeFeedbackModal();
                         
-                        // Track feedback event
                         gtag('event', 'feedback_sent', {
                             'method': 'netlify_forms'
                         });
@@ -968,13 +952,11 @@
 
         // Initialize
         window.onload = function() {
-            // Load questions first
             loadQuestions();
             
             setTimeout(() => {
                 document.getElementById('splashScreen').classList.add('hidden');
                 document.getElementById('nicknameScreen').classList.remove('hidden');
-                // Show welcome popup immediately over nickname screen
                 showWelcomePopup();
             }, 3000);
         };
@@ -1043,7 +1025,6 @@
                     }
                 });
                 
-                // 12 questions total: 8 easy + 3 medium + 1 hard
                 questions = [
                     ...shuffleArray(easyQuestions).slice(0, 8),
                     ...shuffleArray(mediumQuestions).slice(0, 3),
@@ -1056,7 +1037,6 @@
                     return [];
                 }
                 
-                // 12 questions total: 8 easy + 3 medium + 1 hard from 100 per category
                 questions = [
                     ...shuffleArray(categoryData.easy || []).slice(0, 8),
                     ...shuffleArray(categoryData.medium || []).slice(0, 3),
@@ -1064,7 +1044,6 @@
                 ];
             }
             
-            // Shuffle final questions and randomize answers
             return shuffleArray(questions).map(q => randomizeAnswers(q));
         }
 
@@ -1202,7 +1181,6 @@
                 <div style="color: #b0b0b0; font-size: 0.85em; margin-top: 12px;">Great job, ${userNickname}!</div>
             `;
 
-            // Update shareable result
             document.getElementById('shareScore').textContent = `I just scored ${score}/${currentQuiz.length}!`;
             document.getElementById('shareCategory').textContent = `${categoryNames[selectedCategory]} Quiz Results`;
         }
