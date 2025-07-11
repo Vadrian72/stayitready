@@ -16,7 +16,7 @@
     
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Courier New', monospace;
             background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
             color: white;
             margin: 0;
@@ -34,6 +34,227 @@
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
+        
+        /* Welcome Popup Styles */
+        .welcome-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10000;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .welcome-content {
+            background: linear-gradient(135deg, #2d2d44 0%, #3d3d54 100%);
+            border: 2px solid #64b5f6;
+            border-radius: 20px;
+            padding: 25px;
+            max-width: 90vw;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: popupFadeIn 0.3s ease-out;
+            font-family: 'Courier New', monospace;
+        }
+        
+        @keyframes popupFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .welcome-header {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8em;
+            color: #64b5f6;
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        
+        .welcome-description {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1em;
+            color: #e0e0e0;
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+        
+        .feature-list {
+            margin: 20px 0;
+        }
+        
+        .feature-item {
+            font-family: 'Courier New', monospace;
+            color: #81c784;
+            margin: 8px 0;
+            padding-left: 10px;
+            font-size: 0.95em;
+        }
+        
+        .coming-soon {
+            margin-top: 25px;
+            padding: 15px;
+            background: rgba(100, 181, 246, 0.1);
+            border-radius: 10px;
+            border-left: 4px solid #64b5f6;
+        }
+        
+        .coming-soon h4 {
+            font-family: 'Courier New', monospace;
+            color: #64b5f6;
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        
+        .coming-soon-item {
+            font-family: 'Courier New', monospace;
+            color: #ffeb3b;
+            margin: 6px 0;
+            font-size: 0.9em;
+        }
+        
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            line-height: 1;
+        }
+        
+        .popup-close:hover {
+            color: #ff5252;
+            transform: scale(1.1);
+        }
+        
+        .popup-start-btn {
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 20px auto 0;
+            display: block;
+            transition: transform 0.2s;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .popup-start-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Send Feedback Button */
+        .feedback-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #ff9800, #f57c00);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
+            transition: all 0.3s;
+            z-index: 1000;
+            font-family: 'Courier New', monospace;
+        }
+
+        .feedback-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
+        }
+
+        /* Feedback Modal */
+        .feedback-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 10001;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .feedback-content {
+            background: linear-gradient(135deg, #2d2d44 0%, #3d3d54 100%);
+            border: 2px solid #ff9800;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            font-family: 'Courier New', monospace;
+        }
+
+        .feedback-content h3 {
+            color: #ff9800;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .feedback-textarea {
+            width: 100%;
+            height: 120px;
+            background: rgba(0, 0, 0, 0.3);
+            border: 2px solid #64b5f6;
+            border-radius: 10px;
+            padding: 15px;
+            color: white;
+            font-family: 'Courier New', monospace;
+            font-size: 1em;
+            resize: vertical;
+            margin-bottom: 20px;
+        }
+
+        .feedback-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+        }
+
+        .feedback-submit {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+        }
+
+        .feedback-cancel {
+            background: linear-gradient(135deg, #757575, #616161);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-family: 'Courier New', monospace;
+        }
+        
+        /* Original styles with monospace font */
         .splash-screen {
             text-align: center;
             padding: 50px 0;
@@ -48,11 +269,13 @@
             font-weight: bold;
             color: #64b5f6;
             margin-bottom: 10px;
+            font-family: 'Courier New', monospace;
         }
         .brand-subtitle {
             font-size: 1.2em;
             color: #81c784;
             margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
         }
         .logo {
             font-size: 3em;
@@ -60,6 +283,7 @@
             color: #64b5f6;
             margin-bottom: 20px;
             animation: pulse 2s infinite;
+            font-family: 'Courier New', monospace;
         }
         @keyframes pulse {
             0%, 100% { transform: scale(1); }
@@ -74,6 +298,7 @@
             color: #64b5f6;
             font-size: 2.5em;
             margin-bottom: 30px;
+            font-family: 'Courier New', monospace;
         }
         .nickname-input {
             background: rgba(100, 100, 150, 0.3);
@@ -85,6 +310,7 @@
             width: 300px;
             text-align: center;
             margin: 20px 0;
+            font-family: 'Courier New', monospace;
         }
         .btn {
             background: linear-gradient(135deg, #64b5f6, #42a5f5);
@@ -96,6 +322,7 @@
             cursor: pointer;
             margin: 10px;
             transition: transform 0.2s;
+            font-family: 'Courier New', monospace;
         }
         .btn:hover {
             transform: translateY(-2px);
@@ -114,65 +341,91 @@
         .quiz-container {
             text-align: left;
         }
+        
+        /* Mobile-optimized quiz header */
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(0,0,0,0.2);
-            padding: 15px;
+            padding: 10px 15px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            min-height: auto;
         }
+        
         .back-btn {
             background: linear-gradient(135deg, #ef5350, #f44336);
-            padding: 10px 20px;
-            font-size: 0.9em;
+            padding: 8px 16px;
+            font-size: 0.85em;
+            white-space: nowrap;
+            font-family: 'Courier New', monospace;
         }
+        
+        .quiz-title-mobile {
+            font-size: 1.2em;
+            color: #64b5f6;
+            font-weight: bold;
+            text-align: center;
+            flex: 1;
+            margin: 0 10px;
+            word-wrap: break-word;
+            font-family: 'Courier New', monospace;
+        }
+        
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: rgba(0,0,0,0.3);
-            border-radius: 4px;
-            margin-bottom: 20px;
+            border-radius: 3px;
+            margin-bottom: 15px;
         }
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #64b5f6, #42a5f5);
-            border-radius: 4px;
+            border-radius: 3px;
             transition: width 0.3s;
             width: 0%;
         }
+        
+        /* Mobile-optimized question header */
         .question-header {
             display: flex;
             justify-content: space-between;
             background: rgba(0,0,0,0.2);
-            padding: 15px;
+            padding: 10px 15px;
             border-radius: 10px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            align-items: center;
+            font-family: 'Courier New', monospace;
         }
+        
         .question {
             background: rgba(0,0,0,0.3);
-            padding: 25px;
+            padding: 20px;
             border-radius: 15px;
             border-left: 4px solid #64b5f6;
         }
         .question h3 {
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            line-height: 1.5;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            line-height: 1.4;
+            font-family: 'Courier New', monospace;
         }
         .options {
             display: grid;
-            gap: 15px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 15px 0;
         }
         .option {
             background: rgba(100, 100, 150, 0.3);
             border: 2px solid transparent;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 0.95em;
+            font-family: 'Courier New', monospace;
         }
         .option:hover {
             background: rgba(100, 181, 246, 0.2);
@@ -195,10 +448,12 @@
             opacity: 0.7;
         }
         .feedback {
-            margin-top: 20px;
-            padding: 15px;
+            margin-top: 15px;
+            padding: 12px;
             border-radius: 10px;
             display: none;
+            font-size: 0.9em;
+            font-family: 'Courier New', monospace;
         }
         .feedback.correct {
             background: rgba(129, 199, 132, 0.2);
@@ -208,6 +463,16 @@
             background: rgba(229, 115, 115, 0.2);
             border: 1px solid #ef5350;
         }
+        
+        /* Mobile-optimized next button */
+        #nextBtn {
+            margin-top: 15px;
+            padding: 12px 25px;
+            font-size: 1em;
+            width: 100%;
+            font-family: 'Courier New', monospace;
+        }
+        
         .results {
             text-align: center;
             padding: 20px 0;
@@ -218,6 +483,7 @@
             padding: 20px;
             background: rgba(0,0,0,0.3);
             border-radius: 15px;
+            font-family: 'Courier New', monospace;
         }
         .share-section {
             margin-top: 30px;
@@ -230,6 +496,7 @@
             font-size: 1.2em;
             color: #64b5f6;
             margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
         }
         .share-buttons {
             display: flex;
@@ -245,6 +512,7 @@
             font-size: 0.9em;
             transition: transform 0.2s;
             min-width: 120px;
+            font-family: 'Courier New', monospace;
         }
         .share-btn:hover {
             transform: translateY(-2px);
@@ -287,6 +555,7 @@
             width: 80%;
             max-width: 400px;
             text-align: center;
+            font-family: 'Courier New', monospace;
         }
         .modal-buttons {
             margin-top: 20px;
@@ -299,6 +568,7 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
+            font-family: 'Courier New', monospace;
         }
         .modal-btn.yes {
             background: linear-gradient(135deg, #ef5350, #f44336);
@@ -323,6 +593,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            font-family: 'Courier New', monospace;
         }
         .shareable-result .logo-section {
             margin-bottom: 30px;
@@ -341,20 +612,140 @@
             font-size: 1.1em;
             color: #e0e0e0;
         }
+        
+        /* Mobile responsive improvements */
         @media (max-width: 768px) {
-            .container { padding: 20px; margin: 10px; }
-            .main-title { font-size: 2em; }
-            .logo { font-size: 2.5em; }
-            .quiz-header { flex-direction: column; gap: 10px; }
-            .question-header { flex-direction: column; gap: 5px; }
-            .logo-image { max-width: 200px; }
-            .brand-name { font-size: 2.2em; }
-            .share-buttons { flex-direction: column; }
-            .share-btn { min-width: 200px; }
+            .container { 
+                padding: 15px; 
+                margin: 10px; 
+            }
+            .main-title { 
+                font-size: 1.8em; 
+            }
+            .logo { 
+                font-size: 2.2em; 
+            }
+            .quiz-header { 
+                padding: 8px 12px;
+                margin-bottom: 12px;
+            }
+            .quiz-title-mobile {
+                font-size: 1.1em;
+            }
+            .question-header { 
+                padding: 8px 12px;
+                margin-bottom: 12px;
+                font-size: 0.9em;
+            }
+            .question {
+                padding: 15px;
+            }
+            .question h3 {
+                font-size: 1.1em;
+                margin-bottom: 12px;
+            }
+            .options {
+                gap: 10px;
+                margin: 12px 0;
+            }
+            .option {
+                padding: 10px;
+                font-size: 0.9em;
+            }
+            #nextBtn {
+                padding: 10px 20px;
+                margin-top: 12px;
+            }
+            .logo-image { 
+                max-width: 200px; 
+            }
+            .brand-name { 
+                font-size: 2.2em; 
+            }
+            .share-buttons { 
+                flex-direction: column; 
+            }
+            .share-btn { 
+                min-width: 200px; 
+            }
+            .welcome-content {
+                margin: 5% auto;
+                padding: 20px;
+                max-height: 90vh;
+            }
+            .welcome-header {
+                font-size: 1.4em;
+                margin-bottom: 15px;
+            }
+            .welcome-description {
+                font-size: 0.95em;
+            }
+            .feature-item {
+                font-size: 0.85em;
+            }
+            .coming-soon-item {
+                font-size: 0.8em;
+            }
+            .feedback-btn {
+                bottom: 15px;
+                right: 15px;
+                padding: 10px 15px;
+                font-size: 0.8em;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- Welcome Popup -->
+    <div id="welcomePopup" class="welcome-popup">
+        <div class="welcome-content">
+            <button class="popup-close" onclick="closeWelcomePopup()">&times;</button>
+            
+            <div class="welcome-header">Welcome to stayitready.com</div>
+            
+            <div class="welcome-description">
+                Over 300+ unique IT questions crafted by professionals
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item">✓ SQL, UNIX, BASH, PL/SQL expertise testing</div>
+                <div class="feature-item">✓ Real-world scenarios and practical knowledge</div>
+                <div class="feature-item">✓ Instant feedback with detailed explanations</div>
+            </div>
+            
+            <div class="coming-soon">
+                <h4>Coming Soon:</h4>
+                <div class="coming-soon-item">🏆 Global Leaderboards</div>
+                <div class="coming-soon-item">⏱️ Timed Challenge Mode</div>
+                <div class="coming-soon-item">📚 IT Knowledge Blog</div>
+                <div class="coming-soon-item">🔧 Advanced Debugging Scenarios</div>
+                <div class="coming-soon-item">💡 Interview Preparation Modules</div>
+            </div>
+            
+            <button class="popup-start-btn" onclick="closeWelcomePopup()">Proceed</button>
+        </div>
+    </div>
+
+    <!-- Send Feedback Button -->
+    <button class="feedback-btn" onclick="showFeedbackModal()">📧 Send Feedback</button>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="feedback-modal">
+        <div class="feedback-content">
+            <button class="popup-close" onclick="closeFeedbackModal()">&times;</button>
+            
+            <h3>Send Feedback</h3>
+            <p style="color: #e0e0e0; margin-bottom: 20px;">Have a suggestion, found a bug, or want to share your thoughts? We'd love to hear from you!</p>
+            
+            <textarea id="feedbackText" class="feedback-textarea" placeholder="Enter your feedback here..." maxlength="1000"></textarea>
+            
+            <div class="feedback-buttons">
+                <button class="feedback-cancel" onclick="closeFeedbackModal()">Cancel</button>
+                <button class="feedback-submit" onclick="sendFeedback()">Send Feedback</button>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Splash Screen -->
         <div id="splashScreen" class="splash-screen">
@@ -392,7 +783,7 @@
         <div id="quizContainer" class="quiz-container hidden">
             <div class="quiz-header">
                 <button class="back-btn btn" onclick="showBackModal()">← Back</button>
-                <div id="quizTitle" style="font-size: 1.5em; color: #64b5f6; font-weight: bold;"></div>
+                <div id="quizTitle" class="quiz-title-mobile"></div>
             </div>
 
             <div class="progress-bar">
@@ -400,8 +791,8 @@
             </div>
             
             <div class="question-header">
-                <div id="questionNumber" style="font-size: 1.2em; color: #64b5f6; font-weight: bold;"></div>
-                <div id="currentScore" style="color: #81c784;">Score: 0/0</div>
+                <div id="questionNumber" style="font-size: 1em; color: #64b5f6; font-weight: bold;"></div>
+                <div id="currentScore" style="color: #81c784; font-size: 0.9em;">Score: 0/0</div>
             </div>
 
             <div class="question">
@@ -439,7 +830,7 @@
             <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
             <div style="font-size: 1.5em; color: #64b5f6; font-weight: bold;">stay IT ready</div>
         </div>
-        <div class="score-section" id="shareScore">I just scored 18/20!</div>
+        <div class="score-section" id="shareScore">I just scored 10/12!</div>
         <div style="font-size: 1.3em; margin-bottom: 20px;">Can you beat that?</div>
         <div class="category-section" id="shareCategory">SQL Quiz Results</div>
         <div class="domain-section">stayitready.com</div>
@@ -458,205 +849,9 @@
     </div>
 
     <script>
-        // Sample questions database
-        const questionsDB = {
-            sql: {
-                easy: [
-                    { question: "Which SQL statement is used to extract data from a database?", options: ["SELECT", "EXTRACT", "GET", "OPEN"], correct: 0, tip: "SELECT is the fundamental statement for querying data." },
-                    { question: "Which clause is used to filter rows before grouping?", options: ["WHERE", "HAVING", "FILTER", "CONDITION"], correct: 0, tip: "WHERE clause filters individual rows before GROUP BY." },
-                    { question: "What does the SQL INSERT statement do?", options: ["Adds new records to a table", "Updates existing records", "Deletes records", "Creates a new table"], correct: 0, tip: "INSERT statement adds new rows to an existing table." },
-                    { question: "Which operator is used for pattern matching?", options: ["LIKE", "MATCH", "FIND", "SEARCH"], correct: 0, tip: "LIKE operator is used with wildcards for pattern matching." },
-                    { question: "What does NULL represent in SQL?", options: ["Missing or unknown value", "Zero value", "Empty string", "False value"], correct: 0, tip: "NULL represents the absence of a value." },
-                    { question: "Which statement modifies existing data?", options: ["UPDATE", "MODIFY", "CHANGE", "ALTER"], correct: 0, tip: "UPDATE statement modifies existing records in a table." },
-                    { question: "How do you delete all records from a table?", options: ["DELETE FROM table_name", "REMOVE * FROM table_name", "DROP ALL FROM table_name", "CLEAR table_name"], correct: 0, tip: "DELETE FROM removes all rows while preserving table structure." },
-                    { question: "Which clause sorts the result set?", options: ["ORDER BY", "SORT BY", "GROUP BY", "ARRANGE BY"], correct: 0, tip: "ORDER BY sorts results in ascending or descending order." },
-                    { question: "What does the DISTINCT keyword do?", options: ["Returns only unique values", "Counts rows", "Sorts results", "Groups results"], correct: 0, tip: "DISTINCT eliminates duplicate rows from the result set." },
-                    { question: "Which function counts rows?", options: ["COUNT()", "SUM()", "NUMBER()", "TOTAL()"], correct: 0, tip: "COUNT() returns the number of rows that match a condition." },
-                    { question: "What is the purpose of GROUP BY?", options: ["Groups rows with same values", "Sorts rows ascending", "Filters rows", "Joins tables"], correct: 0, tip: "GROUP BY groups rows with same values for aggregate functions." },
-                    { question: "Which constraint ensures unique values?", options: ["UNIQUE", "PRIMARY KEY", "NOT NULL", "CHECK"], correct: 0, tip: "UNIQUE constraint ensures all values in a column are different." },
-                    { question: "What does MAX() function return?", options: ["The largest value", "Total number of values", "Average value", "Smallest value"], correct: 0, tip: "MAX() returns the highest value in a column." }
-                ],
-                medium: [
-                    { question: "What type of join returns all records from both tables?", options: ["FULL OUTER JOIN", "INNER JOIN", "LEFT JOIN", "CROSS JOIN"], correct: 0, tip: "FULL OUTER JOIN returns all records from both tables with NULLs where no match exists." },
-                    { question: "Which window function assigns unique sequential integers?", options: ["ROW_NUMBER()", "RANK()", "DENSE_RANK()", "NTILE()"], correct: 0, tip: "ROW_NUMBER() assigns unique sequential integers starting from 1." },
-                    { question: "What is the purpose of foreign key constraint?", options: ["Maintains referential integrity", "Ensures unique values", "Prevents NULL values", "Creates index automatically"], correct: 0, tip: "Foreign key ensures referential integrity between tables." },
-                    { question: "Which isolation level prevents dirty reads but allows phantom reads?", options: ["READ COMMITTED", "READ UNCOMMITTED", "REPEATABLE READ", "SERIALIZABLE"], correct: 0, tip: "READ COMMITTED prevents dirty reads but allows non-repeatable and phantom reads." },
-                    { question: "What does COALESCE function do?", options: ["Returns first non-NULL value", "Combines strings", "Counts non-NULL values", "Converts data types"], correct: 0, tip: "COALESCE returns the first non-NULL expression from a list." }
-                ],
-                hard: [
-                    { question: "Which approach provides best performance for finding second highest salary?", options: ["SELECT MAX(salary) FROM employees WHERE salary < (SELECT MAX(salary) FROM employees)", "SELECT salary FROM (SELECT salary, ROW_NUMBER() OVER (ORDER BY salary DESC) as rn FROM employees) WHERE rn = 2", "SELECT salary FROM (SELECT DISTINCT salary, RANK() OVER (ORDER BY salary DESC) as rnk FROM employees) WHERE rnk = 2", "SELECT salary FROM employees ORDER BY salary DESC LIMIT 1 OFFSET 1"], correct: 1, tip: "ROW_NUMBER() with ORDER BY provides consistent performance and handles duplicates properly." },
-                    { question: "Most efficient pagination for large datasets?", options: ["SELECT * FROM table ORDER BY id LIMIT 20 OFFSET 1000", "SELECT * FROM table WHERE id > last_id ORDER BY id LIMIT 20", "SELECT * FROM (SELECT *, ROW_NUMBER() OVER (ORDER BY id) as rn FROM table) WHERE rn BETWEEN 1001 AND 1020", "SELECT TOP 20 * FROM table WHERE id NOT IN (SELECT TOP 1000 id FROM table ORDER BY id) ORDER BY id"], correct: 1, tip: "Cursor-based pagination using WHERE clauses is most efficient for large datasets." }
-                ]
-            },
-            unix: {
-                easy: [
-                    { question: "Which command displays file contents?", options: ["cat", "show", "display", "view"], correct: 0, tip: "cat concatenates and displays file content." },
-                    { question: "What does 'ls' command do?", options: ["Lists files and directories", "Creates new file", "Deletes files", "Edits files"], correct: 0, tip: "ls lists directory contents, similar to 'dir' in Windows." },
-                    { question: "Which command changes directory?", options: ["cd", "chdir", "changedir", "goto"], correct: 0, tip: "cd (change directory) navigates between directories." },
-                    { question: "What does 'pwd' display?", options: ["Current working directory", "Password info", "Process data", "Document"], correct: 0, tip: "pwd shows the full path of current directory." },
-                    { question: "Which command creates directories?", options: ["mkdir", "createdir", "newdir", "makefolder"], correct: 0, tip: "mkdir creates new directories in the filesystem." },
-                    { question: "What does 'rm' command do?", options: ["Removes files and directories", "Renames files", "Reads mail", "Runs programs"], correct: 0, tip: "rm deletes files and directories from filesystem." },
-                    { question: "Which command copies files?", options: ["cp", "copy", "duplicate", "clone"], correct: 0, tip: "cp creates duplicates of files and directories." },
-                    { question: "What does 'mv' command do?", options: ["Moves or renames files", "Makes variables", "Monitors videos", "Multiple views"], correct: 0, tip: "mv relocates files/directories or renames them." },
-                    { question: "Which command shows running processes?", options: ["ps", "proc", "process", "show"], correct: 0, tip: "ps displays information about running processes." },
-                    { question: "What does 'grep' do?", options: ["Searches for patterns in text", "Groups files", "Gets remote files", "Generates reports"], correct: 0, tip: "grep searches for patterns within files or input streams." },
-                    { question: "Which command shows last lines of file?", options: ["tail", "end", "bottom", "last"], correct: 0, tip: "tail shows last few lines, useful for log monitoring." },
-                    { question: "What does 'head' show?", options: ["First lines of file", "File headers", "Main directory", "Top processes"], correct: 0, tip: "head displays first few lines of a file." },
-                    { question: "Which command counts lines, words, characters?", options: ["wc", "count", "calc", "measure"], correct: 0, tip: "wc (word count) counts lines, words, and characters." }
-                ],
-                medium: [
-                    { question: "What does 'find /home -name \"*.log\" -mtime +7 -delete' do?", options: ["Finds log files older than 7 days in /home and deletes them", "Finds .log files modified in last 7 days", "Creates log files with 7-day expiration", "Moves .log files older than 7 days"], correct: 0, tip: "This finds .log files older than 7 days and deletes them." },
-                    { question: "Which command traces system calls?", options: ["strace", "trace", "syscall", "debug"], correct: 0, tip: "strace intercepts and records system calls made by a process." },
-                    { question: "What does 'awk '{print $3}' filename' do?", options: ["Prints third field of each line", "Prints third line", "Prints every third character", "Prints file three times"], correct: 0, tip: "awk treats lines as fields separated by whitespace, $3 is third field." },
-                    { question: "Which command shows open files for processes?", options: ["lsof", "openfiles", "fuser", "handles"], correct: 0, tip: "lsof shows all files opened by processes, including network connections." },
-                    { question: "What does 'sed 's/old/new/g' filename' do?", options: ["Replaces all occurrences of 'old' with 'new'", "Searches for patterns", "Sorts lines", "Counts occurrences"], correct: 0, tip: "sed performs global substitution replacing all 'old' with 'new'." }
-                ],
-                hard: [
-                    { question: "Best approach for processing large log files?", options: ["awk with field processing and pattern matching", "grep with multiple pattern files", "sed with complex regex", "cut and sort pipelines"], correct: 0, tip: "awk is highly optimized for field processing and performs better than multiple tool combinations." },
-                    { question: "Most efficient method for finding files larger than 100MB modified in last 30 days?", options: ["find / -type f -size +100M -mtime -30 2>/dev/null", "locate -s +100M -mtime -30", "du -h / | awk '$1 > 100'", "ls -laR / | awk '$5 > 104857600'"], correct: 0, tip: "find with type, size, and mtime filters is most efficient with stderr redirection." }
-                ]
-            },
-            bash: {
-                easy: [
-                    { question: "How to make script executable?", options: ["chmod +x script.sh", "execute script.sh", "run script.sh", "bash script.sh"], correct: 0, tip: "chmod +x adds execute permission." },
-                    { question: "Correct shebang for bash script?", options: ["#!/bin/bash", "#/bin/bash", "!/bin/bash", "@bin/bash"], correct: 0, tip: "#!/bin/bash tells system to use bash interpreter." },
-                    { question: "How to read user input?", options: ["read variable", "input variable", "get variable", "scan variable"], correct: 0, tip: "read command captures user input from stdin." },
-                    { question: "Basic if statement syntax?", options: ["if [ condition ]; then", "if (condition) {", "if condition:", "if <condition> then"], correct: 0, tip: "Bash uses square brackets for test conditions." },
-                    { question: "How to access first command line argument?", options: ["$1", "arg1", "argv[1]", "param1"], correct: 0, tip: "$1 represents the first positional parameter." },
-                    { question: "Variable containing script name?", options: ["$0", "$script", "$name", "$program"], correct: 0, tip: "$0 contains the name/path of script being executed." },
-                    { question: "For loop syntax?", options: ["for i in list; do ... done", "for (i in list) { ... }", "foreach i in list: ...", "for i = list do ... end"], correct: 0, tip: "Bash for loops use 'for variable in list; do commands; done'." },
-                    { question: "String equality operator?", options: ["=", "==", "eq", "equals"], correct: 0, tip: "Single equals is used for string comparison in bash." },
-                    { question: "How to redirect output to file?", options: ["command > file", "command >> file", "command -> file", "command write file"], correct: 0, tip: "Single > redirects stdout to file, overwriting content." },
-                    { question: "What does $? contain?", options: ["Exit status of last command", "Process ID", "Number of arguments", "Current directory"], correct: 0, tip: "$? holds exit status of most recently executed command." },
-                    { question: "How to append output to file?", options: ["command >> file", "command > file", "command + file", "command append file"], correct: 0, tip: "Double >> appends output without overwriting." },
-                    { question: "Function definition syntax?", options: ["function_name() { commands; }", "def function_name(): commands", "function function_name { commands }", "func function_name() { commands }"], correct: 0, tip: "Bash functions use name() { commands; } syntax." },
-                    { question: "How to get argument count?", options: ["$#", "$count", "$argc", "$args"], correct: 0, tip: "$# contains number of positional parameters." }
-                ],
-                medium: [
-                    { question: "Proper way to parse options with getopts?", options: ["while getopts \"a:b:c\" opt; do case $opt in a) value=$OPTARG;; esac; done", "getopts -parse \"a:b:c\" $@", "for opt in getopts \"a:b:c\"", "parse_options getopts"], correct: 0, tip: "getopts with while loop and case statement is standard approach." },
-                    { question: "Advanced parameter expansion features?", options: ["${variable##pattern} removes longest match from beginning", "${variable//pattern/replacement} replaces all matches", "${variable%%pattern} removes longest match from end", "All of the above"], correct: 3, tip: "Parameter expansion provides powerful pattern matching capabilities." },
-                    { question: "Difference between $* and $@ in quoted form?", options: ["\"$*\" creates single word, \"$@\" preserves separate arguments", "\"$@\" creates single word, \"$*\" preserves arguments", "They behave identically", "\"$*\" is for arrays"], correct: 0, tip: "When quoted, \"$*\" becomes one word, \"$@\" maintains individual arguments." },
-                    { question: "How to create here documents?", options: ["command <<EOF\\nlines\\nEOF", "command <<< \"single line\"", "command < input_file", "command | echo \"input\""], correct: 0, tip: "Here documents use <<DELIMITER syntax for multi-line input." },
-                    { question: "What does 'set -u' do?", options: ["Treats undefined variables as errors", "Sets variables as undefined", "Enables strict user mode", "Updates all variables"], correct: 0, tip: "set -u causes script to exit when referencing undefined variables." }
-                ],
-                hard: [
-                    { question: "Most memory-efficient way to process large files line by line?", options: ["while IFS= read -r line; do process \"$line\"; done < file", "for line in $(cat file); do process \"$line\"; done", "mapfile -t lines < file; for line in \"${lines[@]}\"", "cat file | while read line"], correct: 0, tip: "Direct input redirection processes files without loading entire content into memory." },
-                    { question: "How to implement robust error handling with cleanup?", options: ["trap 'cleanup_function; exit 1' ERR EXIT", "set -e; trap cleanup_function EXIT", "if ! command; then cleanup; exit 1; fi", "try-catch syntax (not bash)"], correct: 0, tip: "Using trap with ERR and EXIT ensures cleanup runs on both errors and normal termination." }
-                ]
-            },
-            plsql: {
-                easy: [
-                    { question: "Keyword to create stored procedure?", options: ["CREATE PROCEDURE", "CREATE FUNCTION", "CREATE BLOCK", "CREATE ROUTINE"], correct: 0, tip: "CREATE PROCEDURE defines a stored procedure." },
-                    { question: "How to declare variable?", options: ["variable_name datatype;", "DECLARE variable_name datatype;", "VAR variable_name datatype;", "SET variable_name datatype;"], correct: 0, tip: "Variables declared with 'variable_name datatype;' in DECLARE section." },
-                    { question: "Section containing executable statements?", options: ["BEGIN...END", "DECLARE", "EXCEPTION", "BODY"], correct: 0, tip: "BEGIN...END block contains executable statements." },
-                    { question: "How to display output?", options: ["DBMS_OUTPUT.PUT_LINE()", "PRINT()", "ECHO()", "DISPLAY()"], correct: 0, tip: "DBMS_OUTPUT.PUT_LINE() is standard way to display output." },
-                    { question: "Correct IF statement syntax?", options: ["IF condition THEN ... END IF;", "IF (condition) { ... }", "IF condition: ... ENDIF", "IF condition DO ... DONE"], correct: 0, tip: "PL/SQL uses 'IF condition THEN ... END IF;' syntax." },
-                    { question: "How to declare cursor?", options: ["CURSOR cursor_name IS SELECT ...", "DECLARE CURSOR cursor_name ...", "CREATE CURSOR cursor_name ...", "SET CURSOR cursor_name ..."], correct: 0, tip: "Cursors declared with 'CURSOR cursor_name IS SELECT;' syntax." },
-                    { question: "Keyword for exception handling?", options: ["EXCEPTION", "CATCH", "ERROR", "HANDLE"], correct: 0, tip: "EXCEPTION section handles runtime errors." },
-                    { question: "How to open cursor?", options: ["OPEN cursor_name", "START cursor_name", "BEGIN cursor_name", "EXECUTE cursor_name"], correct: 0, tip: "OPEN statement opens cursor and executes SELECT." },
-                    { question: "Statement to retrieve data from cursor?", options: ["FETCH", "GET", "READ", "RETRIEVE"], correct: 0, tip: "FETCH retrieves rows from open cursor into variables." },
-                    { question: "How to close cursor?", options: ["CLOSE cursor_name", "END cursor_name", "STOP cursor_name", "FINISH cursor_name"], correct: 0, tip: "CLOSE statement closes cursor and releases resources." },
-                    { question: "FOR loop syntax?", options: ["FOR i IN 1..10 LOOP ... END LOOP;", "FOR (i=1; i<=10; i++) { ... }", "FOR i = 1 TO 10 DO ... DONE", "LOOP i FROM 1 TO 10 ... END"], correct: 0, tip: "PL/SQL FOR loops use 'FOR variable IN range LOOP ... END LOOP;'." },
-                    { question: "How to declare constant?", options: ["constant_name CONSTANT datatype := value;", "CONST constant_name datatype := value;", "constant_name := value CONSTANT;", "DEFINE constant_name := value;"], correct: 0, tip: "Constants declared with 'name CONSTANT datatype := value;'." },
-                    { question: "What does %TYPE attribute do?", options: ["Inherits datatype from column", "Defines new datatype", "Creates type alias", "Sets default value"], correct: 0, tip: "%TYPE inherits datatype of table column or variable." }
-                ],
-                medium: [
-                    { question: "Difference between implicit and explicit cursors?", options: ["Implicit cursors automatically created for SQL statements", "Explicit cursors provide better performance", "Implicit cursors only process single rows", "No functional difference"], correct: 0, tip: "Oracle automatically creates implicit cursors for SQL DML statements." },
-                    { question: "How to implement bulk operations?", options: ["Use BULK COLLECT and FORALL statements", "Use individual row processing", "Use cursor FOR loops exclusively", "Use multiple INSERT statements"], correct: 0, tip: "BULK COLLECT and FORALL reduce context switches between PL/SQL and SQL engines." },
-                    { question: "Purpose of SAVEPOINT?", options: ["Creates rollback points within transactions", "Saves session state permanently", "Creates data backups automatically", "Marks transaction boundaries"], correct: 0, tip: "SAVEPOINT allows partial rollback to specific points within transaction." },
-                    { question: "How to resolve mutating table errors?", options: ["Use compound triggers or autonomous transactions", "Disable triggers temporarily", "Use AFTER triggers instead of BEFORE", "Avoid SELECT statements in triggers"], correct: 0, tip: "Compound triggers or autonomous transactions help avoid mutating table restrictions." },
-                    { question: "Difference between %FOUND and %NOTFOUND?", options: ["%FOUND is TRUE when last operation returned data", "%NOTFOUND is TRUE when last operation returned data", "They provide identical information", "%FOUND is for cursors, %NOTFOUND for DML"], correct: 0, tip: "%FOUND is TRUE when last fetch/DML operation affected rows." }
-                ],
-                hard: [
-                    { question: "Optimal cursor design for large datasets?", options: ["Use BULK COLLECT with LIMIT clause and proper exception handling", "Use simple cursor FOR loops", "Use multiple single-row fetch operations", "Use cursors without LIMIT restrictions"], correct: 0, tip: "BULK COLLECT with LIMIT prevents memory exhaustion while maintaining performance." },
-                    { question: "How to implement complex business logic with multiple database interactions?", options: ["Use compound triggers and autonomous transactions strategically", "Use multiple separate procedures exclusively", "Use single large procedure with all logic", "Use database triggers for all business rules"], correct: 0, tip: "Compound triggers provide multiple timing points, autonomous transactions handle independent operations." }
-                ]
-            },
-            ubuntu: {
-                easy: [
-                    { question: "Which package manager is used in Ubuntu/Debian?", options: ["apt", "yum", "dnf", "zypper"], correct: 0, tip: "apt (Advanced Package Tool) is the package manager for Debian-based distributions." },
-                    { question: "How do you update package lists in Ubuntu?", options: ["apt update", "apt refresh", "apt sync", "apt fetch"], correct: 0, tip: "apt update refreshes the package index from configured repositories." },
-                    { question: "What command installs packages in Ubuntu?", options: ["apt install package_name", "apt get package_name", "apt add package_name", "apt setup package_name"], correct: 0, tip: "apt install is the modern way to install packages in Debian-based systems." },
-                    { question: "How do you remove packages in Ubuntu?", options: ["apt remove package_name", "apt delete package_name", "apt uninstall package_name", "apt erase package_name"], correct: 0, tip: "apt remove uninstalls packages but keeps configuration files." },
-                    { question: "What does 'apt autoremove' do?", options: ["Removes unused dependency packages", "Automatically removes old package versions", "Removes packages marked for removal", "Cleans package cache automatically"], correct: 0, tip: "autoremove cleans up orphaned dependency packages that are no longer required." },
-                    { question: "Which command upgrades all packages in Ubuntu?", options: ["apt upgrade", "apt update-all", "apt refresh-all", "apt dist-upgrade"], correct: 0, tip: "apt upgrade installs newer versions of installed packages." },
-                    { question: "How do you search for packages in Ubuntu?", options: ["apt search keyword", "apt find keyword", "apt lookup keyword", "apt query keyword"], correct: 0, tip: "apt search looks for packages matching the given keyword." },
-                    { question: "What file contains package sources in Ubuntu?", options: ["/etc/apt/sources.list", "/etc/yum.repos.d/", "/etc/packages.conf", "/etc/apt/repositories"], correct: 0, tip: "/etc/apt/sources.list contains the list of package repositories." },
-                    { question: "How do you clean package cache in Ubuntu?", options: ["apt clean", "apt clear", "apt purge-cache", "apt remove-cache"], correct: 0, tip: "apt clean removes downloaded package files from the cache." },
-                    { question: "What command shows available package updates in Ubuntu?", options: ["apt list --upgradable", "apt show-updates", "apt check-updates", "apt list-upgrades"], correct: 0, tip: "apt list --upgradable shows packages that have newer versions available." },
-                    { question: "How do you hold a package from being upgraded in Ubuntu?", options: ["apt-mark hold package_name", "apt hold package_name", "apt lock package_name", "apt freeze package_name"], correct: 0, tip: "apt-mark hold prevents a package from being automatically upgraded." },
-                    { question: "What does 'apt purge' do differently from 'apt remove'?", options: ["purge removes config files, remove keeps them", "purge removes dependencies, remove doesn't", "purge is forced removal, remove is safe", "No difference, they are identical"], correct: 0, tip: "purge removes packages and their configuration files, remove keeps configs." },
-                    { question: "Which command manages Snap packages in Ubuntu?", options: ["snap", "snapd", "snapctl", "snap-mgr"], correct: 0, tip: "snap command manages Snap packages in Ubuntu and other distributions." }
-                ],
-                medium: [
-                    { question: "How do you add a PPA repository in Ubuntu?", options: ["add-apt-repository ppa:name/ppa", "apt add-repo ppa:name/ppa", "apt-repo add ppa:name/ppa", "ppa-add name/ppa"], correct: 0, tip: "add-apt-repository is used to add Personal Package Archives (PPAs) in Ubuntu." },
-                    { question: "What does 'apt-mark showhold' display?", options: ["Packages held from upgrading", "Packages marked for installation", "Packages marked for removal", "Manually installed packages"], correct: 0, tip: "apt-mark showhold shows packages that are held from being upgraded." },
-                    { question: "How do you configure unattended upgrades in Ubuntu?", options: ["Edit /etc/apt/apt.conf.d/50unattended-upgrades", "Run apt-config unattended-upgrades", "Use update-manager --unattended", "Configure via /etc/cron.d/apt"], correct: 0, tip: "Unattended upgrades are configured through files in /etc/apt/apt.conf.d/." },
-                    { question: "What is the difference between 'apt upgrade' and 'apt dist-upgrade'?", options: ["dist-upgrade can install/remove packages, upgrade only updates existing", "upgrade is safer, dist-upgrade is more aggressive", "dist-upgrade upgrades distribution, upgrade updates packages", "No functional difference"], correct: 0, tip: "dist-upgrade can install new packages or remove existing ones to resolve dependencies." },
-                    { question: "How do you pin a specific package version in Ubuntu?", options: ["Create preferences file in /etc/apt/preferences.d/", "Use apt-pin command", "Modify /etc/apt/sources.list", "Use dpkg --set-selections"], correct: 0, tip: "Package pinning is configured through preference files in /etc/apt/preferences.d/." }
-                ],
-                hard: [
-                    { question: "How do you create a local APT repository in Ubuntu?", options: ["Use dpkg-scanpackages and apt-ftparchive", "Copy packages to /var/cache/apt/archives/", "Use apt-repo create command", "Configure /etc/apt/sources.list.d/"], correct: 0, tip: "Creating local repositories requires dpkg-scanpackages and apt-ftparchive tools to generate package indexes." },
-                    { question: "What is the most secure way to manage package signing keys in Ubuntu?", options: ["Use apt-key with fingerprint verification and store in /etc/apt/trusted.gpg.d/", "Add keys directly with apt-key add", "Download keys with wget and add to keyring", "Use curl to fetch keys and pipe to apt-key"], correct: 0, tip: "Modern practice uses individual key files in /etc/apt/trusted.gpg.d/ with proper fingerprint verification." }
-                ]
-            },
-            rhel: {
-                easy: [
-                    { question: "Which package manager is used in RHEL 8+?", options: ["dnf", "yum", "apt", "zypper"], correct: 0, tip: "dnf (Dandified YUM) is the package manager for RHEL 8+ and Fedora." },
-                    { question: "What was the package manager in RHEL 7/CentOS 7?", options: ["yum", "dnf", "apt", "rpm"], correct: 0, tip: "yum was the primary package manager in RHEL 7 and earlier versions." },
-                    { question: "How do you install packages in RHEL/CentOS?", options: ["dnf install package_name", "dnf get package_name", "dnf add package_name", "dnf setup package_name"], correct: 0, tip: "dnf install is the command to install packages in modern RHEL/CentOS." },
-                    { question: "What command updates package metadata in RHEL?", options: ["dnf makecache", "dnf update-cache", "dnf refresh", "dnf sync"], correct: 0, tip: "dnf makecache downloads and caches package metadata." },
-                    { question: "How do you remove packages in RHEL?", options: ["dnf remove package_name", "dnf delete package_name", "dnf uninstall package_name", "dnf erase package_name"], correct: 0, tip: "dnf remove uninstalls packages from the system." },
-                    { question: "Which directory contains YUM/DNF repository files?", options: ["/etc/yum.repos.d/", "/etc/dnf/repos.d/", "/etc/repositories/", "/etc/yum/sources/"], correct: 0, tip: "/etc/yum.repos.d/ contains repository configuration files for both yum and dnf." },
-                    { question: "What command searches for packages in RHEL?", options: ["dnf search keyword", "dnf find keyword", "dnf lookup keyword", "dnf query keyword"], correct: 0, tip: "dnf search looks for packages matching the specified keyword." },
-                    { question: "How do you list available updates in RHEL?", options: ["dnf check-update", "dnf list-updates", "dnf show-updates", "dnf available-updates"], correct: 0, tip: "dnf check-update lists available package updates." },
-                    { question: "What command shows installed packages in RHEL?", options: ["dnf list installed", "dnf show-installed", "dnf query installed", "dnf installed"], correct: 0, tip: "dnf list installed displays all currently installed packages." },
-                    { question: "How do you enable a repository in RHEL?", options: ["dnf config-manager --enable repo_name", "dnf enable-repo repo_name", "dnf repo-enable repo_name", "dnf activate repo_name"], correct: 0, tip: "dnf config-manager --enable enables disabled repositories." },
-                    { question: "What tool manages RPM packages directly?", options: ["rpm", "dnf", "yum", "rpmdb"], correct: 0, tip: "rpm is the low-level tool for managing RPM packages directly." },
-                    { question: "How do you clean package cache in RHEL?", options: ["dnf clean all", "dnf clear cache", "dnf purge cache", "dnf remove cache"], correct: 0, tip: "dnf clean all removes all cached package data." },
-                    { question: "What command shows package information in RHEL?", options: ["dnf info package_name", "dnf describe package_name", "dnf details package_name", "dnf show package_name"], correct: 0, tip: "dnf info displays detailed information about a package." }
-                ],
-                medium: [
-                    { question: "How do you install packages from a specific repository in RHEL?", options: ["dnf install --enablerepo=repo_name package", "dnf --repo repo_name install package", "dnf -r repo_name install package", "dnf install package --from-repo repo_name"], correct: 0, tip: "--enablerepo temporarily enables a repository for the current command." },
-                    { question: "What does 'dnf history' command do?", options: ["Shows transaction history and allows rollback", "Displays package installation dates", "Shows command history", "Lists repository access history"], correct: 0, tip: "dnf history shows transaction history and allows viewing/undoing previous operations." },
-                    { question: "How do you exclude packages from updates in RHEL?", options: ["Add exclude= line in /etc/dnf/dnf.conf", "Use dnf exclude package_name", "Modify /etc/yum.repos.d/excludes", "Use dnf lock package_name"], correct: 0, tip: "Package exclusions are configured in /etc/dnf/dnf.conf or /etc/yum.conf." },
-                    { question: "What is the purpose of 'dnf groups' in RHEL?", options: ["Manages package groups for bulk installation", "Groups users for package access", "Organizes repositories by category", "Groups similar commands together"], correct: 0, tip: "dnf groups manages collections of packages that are typically installed together." },
-                    { question: "How do you downgrade a package in RHEL?", options: ["dnf downgrade package_name", "dnf install package_name-older_version", "dnf rollback package_name", "dnf revert package_name"], correct: 0, tip: "dnf downgrade installs an older version of the specified package." }
-                ],
-                hard: [
-                    { question: "How do you create a custom YUM/DNF repository in RHEL?", options: ["Use createrepo_c to generate metadata and configure .repo file", "Copy RPMs to /var/cache/dnf/ and run dnf makecache", "Use dnf-repo-create command", "Configure /etc/yum.repos.d/ and run repodata-gen"], correct: 0, tip: "Custom repositories require createrepo_c to generate metadata and proper .repo file configuration." },
-                    { question: "What is the most effective strategy for managing RHEL subscriptions and updates?", options: ["Use subscription-manager with staged patching and change management", "Enable all repositories and run automatic updates", "Use only EPEL repositories for updates", "Manual RPM installation without repository management"], correct: 0, tip: "Proper RHEL management requires subscription-manager integration with controlled update processes." }
-                ]
-            },
-            linux: {
-                easy: [
-                    { question: "Command to manage systemd services?", options: ["systemctl", "service", "chkconfig", "initctl"], correct: 0, tip: "systemctl is main command for managing systemd services." },
-                    { question: "Package manager in Ubuntu/Debian?", options: ["apt", "yum", "dnf", "zypper"], correct: 0, tip: "apt is package manager for Debian-based distributions." },
-                    { question: "Command to show systemd service logs?", options: ["journalctl", "dmesg", "logcat", "syslog"], correct: 0, tip: "journalctl queries and displays logs from systemd journal." },
-                    { question: "How to start service in systemd?", options: ["systemctl start service_name", "service service_name start", "start service_name", "/etc/init.d/service_name start"], correct: 0, tip: "systemctl start is systemd way to start services." },
-                    { question: "Directory containing systemd service files?", options: ["/etc/systemd/system/", "/etc/init.d/", "/etc/services/", "/usr/local/services/"], correct: 0, tip: "/etc/systemd/system/ contains local systemd service unit files." },
-                    { question: "Command to install packages with apt?", options: ["apt install package_name", "apt get package_name", "apt add package_name", "apt setup package_name"], correct: 0, tip: "apt install is modern way to install packages in Debian-based systems." },
-                    { question: "How to update package lists in Ubuntu?", options: ["apt update", "apt refresh", "apt sync", "apt fetch"], correct: 0, tip: "apt update refreshes package index from configured repositories." },
-                    { question: "Command to show running systemd services?", options: ["systemctl list-units --type=service", "systemctl show-services", "systemctl active-services", "systemctl running"], correct: 0, tip: "systemctl list-units with --type=service filter shows running services." },
-                    { question: "File containing Linux distribution information?", options: ["/etc/os-release", "/etc/version", "/etc/distro", "/etc/linux-release"], correct: 0, tip: "/etc/os-release contains standard distribution identification information." },
-                    { question: "How to enable service to start at boot?", options: ["systemctl enable service_name", "systemctl autostart service_name", "systemctl boot service_name", "chkconfig service_name on"], correct: 0, tip: "systemctl enable creates symlinks to start services automatically at boot." },
-                    { question: "Command to show disk partitions?", options: ["lsblk", "fdisk -l", "parted -l", "All of the above"], correct: 3, tip: "All three commands can display disk partitions with different output formats." },
-                    { question: "Command to remove packages with apt?", options: ["apt remove package_name", "apt delete package_name", "apt uninstall package_name", "apt erase package_name"], correct: 0, tip: "apt remove uninstalls packages but keeps configuration files." },
-                    { question: "How to check systemd service status?", options: ["systemctl status service_name", "systemctl check service_name", "systemctl info service_name", "service service_name status"], correct: 0, tip: "systemctl status shows detailed information about service state." }
-                ],
-                medium: [
-                    { question: "How to create custom systemd service unit?", options: ["Create .service file in /etc/systemd/system/ with [Unit], [Service], [Install] sections", "Use systemctl create-service command", "Copy existing service and modify", "Use service-generator tool"], correct: 0, tip: "Systemd service units require specific sections and must be placed in correct directory." },
-                    { question: "What does 'systemctl mask service_name' do?", options: ["Links service to /dev/null to prevent starting", "Hides service from systemctl list", "Disables service temporarily", "Removes service configuration"], correct: 0, tip: "Masking creates symlink to /dev/null, completely preventing service from starting." },
-                    { question: "How to configure persistent journal logging?", options: ["Set Storage=persistent in /etc/systemd/journald.conf", "Create /var/log/journal directory", "Use journalctl --persistent", "Both A and B"], correct: 3, tip: "Persistent journald requires both configuration setting and journal directory." },
-                    { question: "What does 'apt autoremove' do?", options: ["Removes packages automatically installed as dependencies but no longer needed", "Automatically removes old package versions", "Removes packages marked for removal", "Cleans package cache automatically"], correct: 0, tip: "autoremove cleans up orphaned dependency packages no longer required." },
-                    { question: "How to set up systemd timer unit?", options: ["Create .timer file with [Timer] section and corresponding .service file", "Use systemctl create-timer command", "Configure cron with systemd integration", "Use timer-config utility"], correct: 0, tip: "Systemd timers require both .timer unit file and corresponding .service file." }
-                ],
-                hard: [
-                    { question: "How to implement advanced systemd service resource limits and security?", options: ["Use systemd directives like MemoryLimit=, CPUQuota=, PrivateTmp=, NoNewPrivileges=", "Configure cgroups manually with systemd integration", "Use systemctl resource-limit command", "Set limits in /etc/security/limits.conf"], correct: 0, tip: "Systemd provides comprehensive resource management and security features through service unit directives." },
-                    { question: "Most effective approach for systemd service logging and monitoring?", options: ["Combine structured logging with journald, custom log formatting, and monitoring hooks", "Use traditional syslog with systemd integration", "Configure separate logging service", "Use application-level logging only"], correct: 0, tip: "Structured logging with journald provides best integration with systemd ecosystem and monitoring tools." }
-                ]
-            }
-        };
+        // Questions database - will be loaded from assets/questions.json
+        let questionsDB = {};
+        let isQuestionsLoaded = false;
 
         // Quiz state
         let currentQuiz = [];
@@ -670,11 +865,85 @@
             sql: 'SQL', unix: 'UNIX', bash: 'BASH', plsql: 'PL/SQL', ubuntu: 'Ubuntu/Debian', rhel: 'RHEL/CentOS', mixed: 'Mixed'
         };
 
+        // Load questions from external file
+        async function loadQuestions() {
+            try {
+                const response = await fetch('assets/questions.json');
+                questionsDB = await response.json();
+                isQuestionsLoaded = true;
+                console.log('Questions loaded successfully');
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                // Fallback: show error message to user
+                alert('Failed to load quiz questions. Please refresh the page and try again.');
+            }
+        }
+
+        // Welcome popup functions
+        function showWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            popup.style.display = 'flex';
+        }
+
+        function closeWelcomePopup() {
+            const popup = document.getElementById('welcomePopup');
+            popup.style.display = 'none';
+        }
+
+        // Feedback modal functions
+        function showFeedbackModal() {
+            document.getElementById('feedbackModal').style.display = 'flex';
+        }
+
+        function closeFeedbackModal() {
+            document.getElementById('feedbackModal').style.display = 'none';
+            document.getElementById('feedbackText').value = '';
+        }
+
+        function sendFeedback() {
+            const feedbackText = document.getElementById('feedbackText').value.trim();
+            
+            if (!feedbackText) {
+                alert('Please enter your feedback before sending.');
+                return;
+            }
+
+            // Create mailto link
+            const subject = encodeURIComponent('IT Quiz Platform Feedback');
+            const body = encodeURIComponent(`Feedback from user: ${userNickname || 'Anonymous'}\n\n${feedbackText}\n\nSent from: ${window.location.href}`);
+            const mailtoLink = `mailto:customersupport@stayitready.com?subject=${subject}&body=${body}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Close modal
+            closeFeedbackModal();
+            
+            // Track feedback event
+            gtag('event', 'feedback_sent', {
+                'method': 'email'
+            });
+        }
+
+        // Close modals with ESC key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeWelcomePopup();
+                closeFeedbackModal();
+                hideBackModal();
+            }
+        });
+
         // Initialize
         window.onload = function() {
+            // Load questions first
+            loadQuestions();
+            
             setTimeout(() => {
                 document.getElementById('splashScreen').classList.add('hidden');
                 document.getElementById('nicknameScreen').classList.remove('hidden');
+                // Show welcome popup immediately over nickname screen
+                showWelcomePopup();
             }, 3000);
         };
 
@@ -721,6 +990,11 @@
         }
 
         function selectQuestions(category) {
+            if (!isQuestionsLoaded) {
+                alert('Questions are still loading. Please wait a moment and try again.');
+                return [];
+            }
+
             let questions = [];
             
             if (category === 'mixed') {
@@ -730,35 +1004,57 @@
                 const hardQuestions = [];
                 
                 allCategories.forEach(cat => {
-                    easyQuestions.push(...questionsDB[cat].easy);
-                    mediumQuestions.push(...questionsDB[cat].medium);
-                    hardQuestions.push(...questionsDB[cat].hard);
+                    if (questionsDB[cat]) {
+                        easyQuestions.push(...(questionsDB[cat].easy || []));
+                        mediumQuestions.push(...(questionsDB[cat].medium || []));
+                        hardQuestions.push(...(questionsDB[cat].hard || []));
+                    }
                 });
                 
+                // 12 questions total: 8 easy + 3 medium + 1 hard
                 questions = [
-                    ...shuffleArray(easyQuestions).slice(0, 13),
-                    ...shuffleArray(mediumQuestions).slice(0, 5),
-                    ...shuffleArray(hardQuestions).slice(0, 2)
+                    ...shuffleArray(easyQuestions).slice(0, 8),
+                    ...shuffleArray(mediumQuestions).slice(0, 3),
+                    ...shuffleArray(hardQuestions).slice(0, 1)
                 ];
             } else {
                 const categoryData = questionsDB[category];
+                if (!categoryData) {
+                    alert(`Category "${category}" not found in questions database.`);
+                    return [];
+                }
+                
+                // 12 questions total: 8 easy + 3 medium + 1 hard from 100 per category
                 questions = [
-                    ...shuffleArray(categoryData.easy).slice(0, 13),
-                    ...shuffleArray(categoryData.medium).slice(0, 5),
-                    ...shuffleArray(categoryData.hard).slice(0, 2)
+                    ...shuffleArray(categoryData.easy || []).slice(0, 8),
+                    ...shuffleArray(categoryData.medium || []).slice(0, 3),
+                    ...shuffleArray(categoryData.hard || []).slice(0, 1)
                 ];
             }
             
-            return questions.map(q => randomizeAnswers(q));
+            // Shuffle final questions and randomize answers
+            return shuffleArray(questions).map(q => randomizeAnswers(q));
         }
 
         function startQuiz(category) {
+            if (!isQuestionsLoaded) {
+                alert('Questions are still loading. Please wait a moment and try again.');
+                return;
+            }
+
             selectedCategory = category;
-                gtag('event', 'quiz_start', {
-                  'quiz_category': category,
-                  'user_nickname': userNickname
-                });
+            gtag('event', 'quiz_start', {
+                'quiz_category': category,
+                'user_nickname': userNickname
+            });
+            
             currentQuiz = selectQuestions(category);
+            
+            if (currentQuiz.length === 0) {
+                alert('No questions available for this category. Please try another category.');
+                return;
+            }
+            
             currentQuestionIndex = 0;
             score = 0;
             
@@ -859,12 +1155,14 @@
             } else {
                 performanceMessage = 'Consider reviewing the topics and practicing more.';
             }
-                gtag('event', 'quiz_complete', {
-                  'quiz_category': selectedCategory,
-                  'score': score,
-                  'total': currentQuiz.length,
-                  'percentage': percentage
-                });
+            
+            gtag('event', 'quiz_complete', {
+                'quiz_category': selectedCategory,
+                'score': score,
+                'total': currentQuiz.length,
+                'percentage': percentage
+            });
+            
             document.getElementById('scoreDisplay').innerHTML = `
                 <div style="color: #64b5f6; font-size: 1.6em; margin-bottom: 8px;">${score} out of ${currentQuiz.length}</div>
                 <div style="color: #81c784; font-size: 1.2em; margin-bottom: 12px;">${percentage}%</div>
@@ -879,28 +1177,48 @@
 
         // Share functionality
         function shareToWhatsApp() {
+            gtag('event', 'share', {
+                'method': 'whatsapp',
+                'content_type': 'quiz_result'
+            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`;
             const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent('https://stayitready.com')}`;
             window.open(url, '_blank');
         }
 
         function shareToFacebook() {
+            gtag('event', 'share', {
+                'method': 'facebook',
+                'content_type': 'quiz_result'
+            });
             const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://stayitready.com')}&quote=${encodeURIComponent(`I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`)}`;
             window.open(url, '_blank');
         }
 
         function shareToTwitter() {
+            gtag('event', 'share', {
+                'method': 'twitter',
+                'content_type': 'quiz_result'
+            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`;
             const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://stayitready.com')}`;
             window.open(url, '_blank');
         }
 
         function shareToLinkedIn() {
+            gtag('event', 'share', {
+                'method': 'linkedin',
+                'content_type': 'quiz_result'
+            });
             const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://stayitready.com')}&title=${encodeURIComponent('IT Engineer Quiz Results')}&summary=${encodeURIComponent(`I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`)}`;
             window.open(url, '_blank');
         }
 
         function copyShareLink() {
+            gtag('event', 'share', {
+                'method': 'copy_link',
+                'content_type': 'quiz_result'
+            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that? Check it out: https://stayitready.com`;
             
             if (navigator.clipboard && window.isSecureContext) {
@@ -955,9 +1273,18 @@
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('backModal');
-            if (event.target === modal) {
+            const backModal = document.getElementById('backModal');
+            const welcomePopup = document.getElementById('welcomePopup');
+            const feedbackModal = document.getElementById('feedbackModal');
+            
+            if (event.target === backModal) {
                 hideBackModal();
+            }
+            if (event.target === welcomePopup) {
+                closeWelcomePopup();
+            }
+            if (event.target === feedbackModal) {
+                closeFeedbackModal();
             }
         }
     </script>
