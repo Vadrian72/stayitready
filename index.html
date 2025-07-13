@@ -5,6 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IT Engineer Quiz</title>
     
+    <!-- OpenGraph Meta Tags -->
+    <meta property="og:title" content="IT Engineer Quiz - Test Your Skills">
+    <meta property="og:description" content="Challenge yourself with SQL, UNIX, BASH, PL/SQL, Ubuntu, and RHEL questions. Test your IT knowledge now!">
+    <meta property="og:image" content="assets/og-thumbnail.jpg">
+    <meta property="og:url" content="https://stayitready.com">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IT Engineer Quiz - Test Your Skills">
+    <meta name="twitter:description" content="Challenge yourself with SQL, UNIX, BASH, PL/SQL, Ubuntu, and RHEL questions">
+    <meta name="twitter:image" content="assets/og-thumbnail.jpg">
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-THSFGEH018"></script>
     <script>
@@ -16,7 +27,7 @@
     
     <style>
         body {
-            font-family: 'Courier New', monospace;
+            font-family: Arial, sans-serif;
             background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
             color: white;
             margin: 0;
@@ -35,227 +46,8 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
         
-        /* Welcome Popup Styles */
-        .welcome-popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 10000;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(5px);
-        }
-        
-        .welcome-content {
-            background: linear-gradient(135deg, #2d2d44 0%, #3d3d54 100%);
-            border: 2px solid #64b5f6;
-            border-radius: 20px;
-            padding: 25px;
-            max-width: 90vw;
-            max-height: 85vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-            position: relative;
-            animation: popupFadeIn 0.3s ease-out;
-            font-family: 'Courier New', monospace;
-        }
-        
-        @keyframes popupFadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        
-        .welcome-header {
-            font-family: 'Courier New', monospace;
-            font-size: 1.8em;
-            color: #64b5f6;
-            text-align: center;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        
-        .welcome-description {
-            font-family: 'Courier New', monospace;
-            font-size: 1.1em;
-            color: #e0e0e0;
-            text-align: center;
-            margin-bottom: 20px;
-            line-height: 1.4;
-        }
-        
-        .feature-list {
-            margin: 20px 0;
-        }
-        
-        .feature-item {
-            font-family: 'Courier New', monospace;
-            color: #81c784;
-            margin: 8px 0;
-            padding-left: 10px;
-            font-size: 0.95em;
-        }
-        
-        .coming-soon {
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(100, 181, 246, 0.1);
-            border-radius: 10px;
-            border-left: 4px solid #64b5f6;
-        }
-        
-        .coming-soon h4 {
-            font-family: 'Courier New', monospace;
-            color: #64b5f6;
-            margin: 0 0 10px 0;
-            font-size: 1.1em;
-        }
-        
-        .coming-soon-item {
-            font-family: 'Courier New', monospace;
-            color: #ffeb3b;
-            margin: 6px 0;
-            font-size: 0.9em;
-        }
-        
-        .popup-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: #ff6b6b;
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            line-height: 1;
-        }
-        
-        .popup-close:hover {
-            color: #ff5252;
-            transform: scale(1.1);
-        }
-        
-        .popup-start-btn {
-            background: linear-gradient(135deg, #64b5f6, #42a5f5);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin: 20px auto 0;
-            display: block;
-            transition: transform 0.2s;
-            font-family: 'Courier New', monospace;
-        }
-        
-        .popup-start-btn:hover {
-            transform: translateY(-2px);
-        }
-
-        /* Send Feedback Button */
-        .feedback-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff9800, #f57c00);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 50px;
-            font-size: 0.9em;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3);
-            transition: all 0.3s;
-            z-index: 1000;
-            font-family: 'Courier New', monospace;
-        }
-
-        .feedback-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4);
-        }
-
-        /* Feedback Modal */
-        .feedback-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 10001;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .feedback-content {
-            background: linear-gradient(135deg, #2d2d44 0%, #3d3d54 100%);
-            border: 2px solid #ff9800;
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 500px;
-            width: 90%;
-            position: relative;
-            font-family: 'Courier New', monospace;
-        }
-
-        .feedback-content h3 {
-            color: #ff9800;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-            font-family: 'Courier New', monospace;
-        }
-
-        .feedback-textarea {
-            width: 100%;
-            height: 120px;
-            background: rgba(0, 0, 0, 0.3);
-            border: 2px solid #64b5f6;
-            border-radius: 10px;
-            padding: 15px;
-            color: white;
-            font-family: 'Courier New', monospace;
-            font-size: 1em;
-            resize: vertical;
-            margin-bottom: 20px;
-        }
-
-        .feedback-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: flex-end;
-        }
-
-        .feedback-submit {
-            background: linear-gradient(135deg, #4caf50, #45a049);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-family: 'Courier New', monospace;
-        }
-
-        .feedback-cancel {
-            background: linear-gradient(135deg, #757575, #616161);
-            color: white;
-            border: none;
-            padding: 10px 25px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1em;
-            font-family: 'Courier New', monospace;
-        }
-        
-        /* Original styles with monospace font */
-        .splash-screen {
+        /* Loading Screen */
+        .loading-screen {
             text-align: center;
             padding: 50px 0;
         }
@@ -269,26 +61,81 @@
             font-weight: bold;
             color: #64b5f6;
             margin-bottom: 10px;
-            font-family: 'Courier New', monospace;
         }
         .brand-subtitle {
             font-size: 1.2em;
             color: #81c784;
             margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
         }
-        .logo {
-            font-size: 3em;
-            font-weight: bold;
-            color: #64b5f6;
+        
+        /* Animated Loader */
+        .loader {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(100, 181, 246, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid #64b5f6;
+            animation: spin 1s linear infinite;
+            margin: 20px 0;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            font-size: 1.2em;
+            color: #81c784;
+            margin: 20px 0;
+        }
+        
+        .start-btn {
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            margin: 20px 0;
+            transition: transform 0.2s;
+            display: none;
+        }
+        .start-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Error Screen */
+        .error-screen {
+            text-align: center;
+            padding: 50px 0;
+            display: none;
+        }
+        .error-title {
+            color: #ef5350;
+            font-size: 2em;
             margin-bottom: 20px;
-            animation: pulse 2s infinite;
-            font-family: 'Courier New', monospace;
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+        .error-message {
+            color: #e0e0e0;
+            font-size: 1.1em;
+            margin-bottom: 30px;
         }
+        .retry-btn {
+            background: linear-gradient(135deg, #ef5350, #f44336);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .retry-btn:hover {
+            transform: translateY(-2px);
+        }
+        
         .hidden { display: none; }
         .nickname-screen, .category-screen {
             text-align: center;
@@ -298,7 +145,6 @@
             color: #64b5f6;
             font-size: 2.5em;
             margin-bottom: 30px;
-            font-family: 'Courier New', monospace;
         }
         .nickname-input {
             background: rgba(100, 100, 150, 0.3);
@@ -310,7 +156,6 @@
             width: 300px;
             text-align: center;
             margin: 20px 0;
-            font-family: 'Courier New', monospace;
         }
         .btn {
             background: linear-gradient(135deg, #64b5f6, #42a5f5);
@@ -322,7 +167,6 @@
             cursor: pointer;
             margin: 10px;
             transition: transform 0.2s;
-            font-family: 'Courier New', monospace;
         }
         .btn:hover {
             transform: translateY(-2px);
@@ -341,91 +185,65 @@
         .quiz-container {
             text-align: left;
         }
-        
-        /* Mobile-optimized quiz header */
         .quiz-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             background: rgba(0,0,0,0.2);
-            padding: 10px 15px;
+            padding: 15px;
             border-radius: 10px;
-            margin-bottom: 15px;
-            min-height: auto;
+            margin-bottom: 20px;
         }
-        
         .back-btn {
             background: linear-gradient(135deg, #ef5350, #f44336);
-            padding: 8px 16px;
-            font-size: 0.85em;
-            white-space: nowrap;
-            font-family: 'Courier New', monospace;
+            padding: 10px 20px;
+            font-size: 0.9em;
         }
-        
-        .quiz-title-mobile {
-            font-size: 1.2em;
-            color: #64b5f6;
-            font-weight: bold;
-            text-align: center;
-            flex: 1;
-            margin: 0 10px;
-            word-wrap: break-word;
-            font-family: 'Courier New', monospace;
-        }
-        
         .progress-bar {
             width: 100%;
-            height: 6px;
+            height: 8px;
             background: rgba(0,0,0,0.3);
-            border-radius: 3px;
-            margin-bottom: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
         }
         .progress-fill {
             height: 100%;
             background: linear-gradient(90deg, #64b5f6, #42a5f5);
-            border-radius: 3px;
+            border-radius: 4px;
             transition: width 0.3s;
             width: 0%;
         }
-        
-        /* Mobile-optimized question header */
         .question-header {
             display: flex;
             justify-content: space-between;
             background: rgba(0,0,0,0.2);
-            padding: 10px 15px;
+            padding: 15px;
             border-radius: 10px;
-            margin-bottom: 15px;
-            align-items: center;
-            font-family: 'Courier New', monospace;
+            margin-bottom: 20px;
         }
-        
         .question {
             background: rgba(0,0,0,0.3);
-            padding: 20px;
+            padding: 25px;
             border-radius: 15px;
             border-left: 4px solid #64b5f6;
         }
         .question h3 {
-            font-size: 1.2em;
-            margin-bottom: 15px;
-            line-height: 1.4;
-            font-family: 'Courier New', monospace;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
         .options {
             display: grid;
-            gap: 12px;
-            margin: 15px 0;
+            gap: 15px;
+            margin: 20px 0;
         }
         .option {
             background: rgba(100, 100, 150, 0.3);
             border: 2px solid transparent;
-            padding: 12px;
+            padding: 15px;
             border-radius: 10px;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.95em;
-            font-family: 'Courier New', monospace;
         }
         .option:hover {
             background: rgba(100, 181, 246, 0.2);
@@ -448,12 +266,10 @@
             opacity: 0.7;
         }
         .feedback {
-            margin-top: 15px;
-            padding: 12px;
+            margin-top: 20px;
+            padding: 15px;
             border-radius: 10px;
             display: none;
-            font-size: 0.9em;
-            font-family: 'Courier New', monospace;
         }
         .feedback.correct {
             background: rgba(129, 199, 132, 0.2);
@@ -463,16 +279,6 @@
             background: rgba(229, 115, 115, 0.2);
             border: 1px solid #ef5350;
         }
-        
-        /* Mobile-optimized next button */
-        #nextBtn {
-            margin-top: 15px;
-            padding: 12px 25px;
-            font-size: 1em;
-            width: 100%;
-            font-family: 'Courier New', monospace;
-        }
-        
         .results {
             text-align: center;
             padding: 20px 0;
@@ -483,7 +289,6 @@
             padding: 20px;
             background: rgba(0,0,0,0.3);
             border-radius: 15px;
-            font-family: 'Courier New', monospace;
         }
         .share-section {
             margin-top: 30px;
@@ -496,7 +301,6 @@
             font-size: 1.2em;
             color: #64b5f6;
             margin-bottom: 15px;
-            font-family: 'Courier New', monospace;
         }
         .share-buttons {
             display: flex;
@@ -512,7 +316,6 @@
             font-size: 0.9em;
             transition: transform 0.2s;
             min-width: 120px;
-            font-family: 'Courier New', monospace;
         }
         .share-btn:hover {
             transform: translateY(-2px);
@@ -555,7 +358,6 @@
             width: 80%;
             max-width: 400px;
             text-align: center;
-            font-family: 'Courier New', monospace;
         }
         .modal-buttons {
             margin-top: 20px;
@@ -568,7 +370,6 @@
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            font-family: 'Courier New', monospace;
         }
         .modal-btn.yes {
             background: linear-gradient(135deg, #ef5350, #f44336);
@@ -593,7 +394,6 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-family: 'Courier New', monospace;
         }
         .shareable-result .logo-section {
             margin-bottom: 30px;
@@ -612,152 +412,36 @@
             font-size: 1.1em;
             color: #e0e0e0;
         }
-        
-        /* Mobile responsive improvements */
         @media (max-width: 768px) {
-            .container { 
-                padding: 15px; 
-                margin: 10px; 
-            }
-            .main-title { 
-                font-size: 1.8em; 
-            }
-            .logo { 
-                font-size: 2.2em; 
-            }
-            .quiz-header { 
-                padding: 8px 12px;
-                margin-bottom: 12px;
-            }
-            .quiz-title-mobile {
-                font-size: 1.1em;
-            }
-            .question-header { 
-                padding: 8px 12px;
-                margin-bottom: 12px;
-                font-size: 0.9em;
-            }
-            .question {
-                padding: 15px;
-            }
-            .question h3 {
-                font-size: 1.1em;
-                margin-bottom: 12px;
-            }
-            .options {
-                gap: 10px;
-                margin: 12px 0;
-            }
-            .option {
-                padding: 10px;
-                font-size: 0.9em;
-            }
-            #nextBtn {
-                padding: 10px 20px;
-                margin-top: 12px;
-            }
-            .logo-image { 
-                max-width: 200px; 
-            }
-            .brand-name { 
-                font-size: 2.2em; 
-            }
-            .share-buttons { 
-                flex-direction: column; 
-            }
-            .share-btn { 
-                min-width: 200px; 
-            }
-            .welcome-content {
-                margin: 5% auto;
-                padding: 20px;
-                max-height: 90vh;
-            }
-            .welcome-header {
-                font-size: 1.4em;
-                margin-bottom: 15px;
-            }
-            .welcome-description {
-                font-size: 0.95em;
-            }
-            .feature-item {
-                font-size: 0.85em;
-            }
-            .coming-soon-item {
-                font-size: 0.8em;
-            }
-            .feedback-btn {
-                bottom: 15px;
-                right: 15px;
-                padding: 10px 15px;
-                font-size: 0.8em;
-            }
+            .container { padding: 20px; margin: 10px; }
+            .main-title { font-size: 2em; }
+            .quiz-header { flex-direction: column; gap: 10px; }
+            .question-header { flex-direction: column; gap: 5px; }
+            .logo-image { max-width: 200px; }
+            .brand-name { font-size: 2.2em; }
+            .share-buttons { flex-direction: column; }
+            .share-btn { min-width: 200px; }
         }
     </style>
 </head>
 <body>
-    <!-- Welcome Popup -->
-    <div id="welcomePopup" class="welcome-popup">
-        <div class="welcome-content">
-            <button class="popup-close" onclick="closeWelcomePopup()">&times;</button>
-            
-            <div class="welcome-header">Welcome to stayitready.com</div>
-            
-            <div class="welcome-description">
-                Over 300+ unique IT questions crafted by professionals
-            </div>
-            
-            <div class="feature-list">
-                <div class="feature-item">✓ SQL, UNIX, BASH, PL/SQL expertise testing</div>
-                <div class="feature-item">✓ Real-world scenarios and practical knowledge</div>
-                <div class="feature-item">✓ Instant feedback with detailed explanations</div>
-            </div>
-            
-            <div class="coming-soon">
-                <h4>Coming Soon:</h4>
-                <div class="coming-soon-item">🏆 Global Leaderboards</div>
-                <div class="coming-soon-item">⏱️ Timed Challenge Mode</div>
-                <div class="coming-soon-item">📚 IT Knowledge Blog</div>
-                <div class="coming-soon-item">🔧 Advanced Debugging Scenarios</div>
-                <div class="coming-soon-item">💡 Interview Preparation Modules</div>
-            </div>
-            
-            <button class="popup-start-btn" onclick="closeWelcomePopup()">Proceed</button>
-        </div>
-    </div>
-
-    <!-- Send Feedback Button -->
-    <button class="feedback-btn" onclick="showFeedbackModal()">📧 Send Feedback</button>
-
-    <!-- Feedback Modal -->
-    <div id="feedbackModal" class="feedback-modal">
-        <div class="feedback-content">
-            <button class="popup-close" onclick="closeFeedbackModal()">&times;</button>
-            
-            <h3>Send Feedback</h3>
-            <p style="color: #e0e0e0; margin-bottom: 20px;">Have a suggestion, found a bug, or want to share your thoughts? We'd love to hear from you!</p>
-            
-            <form name="feedback" method="POST" data-netlify="true" id="feedbackForm">
-                <input type="hidden" name="form-name" value="feedback" />
-                <input type="hidden" name="user-nickname" id="hiddenNickname" />
-                <input type="hidden" name="page-url" id="hiddenPageUrl" />
-                
-                <textarea name="message" id="feedbackText" class="feedback-textarea" placeholder="Enter your feedback here..." maxlength="1000" required></textarea>
-                
-                <div class="feedback-buttons">
-                    <button type="button" class="feedback-cancel" onclick="closeFeedbackModal()">Cancel</button>
-                    <button type="submit" class="feedback-submit">Send Feedback</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
     <div class="container">
-        <!-- Splash Screen -->
-        <div id="splashScreen" class="splash-screen">
+        <!-- Loading Screen -->
+        <div id="loadingScreen" class="loading-screen">
             <img src="assets/logo.png" alt="stay IT ready" class="logo-image">
             <div class="brand-name">stay IT ready</div>
             <div class="brand-subtitle">Quiz Platform</div>
+            <div class="loader"></div>
+            <div class="loading-text" id="loadingText">Loading questions...</div>
+            <button id="startBtn" class="start-btn" onclick="showNicknameScreen()">Start Quiz</button>
+        </div>
+
+        <!-- Error Screen -->
+        <div id="errorScreen" class="error-screen">
+            <img src="assets/logo.png" alt="stay IT ready" class="logo-image">
+            <div class="error-title">Oops! Something went wrong</div>
+            <div class="error-message" id="errorMessage">Failed to load quiz questions. Please check your internet connection and try again.</div>
+            <button class="retry-btn" onclick="loadQuestions()">Try Again</button>
         </div>
 
         <!-- Nickname Screen -->
@@ -789,7 +473,7 @@
         <div id="quizContainer" class="quiz-container hidden">
             <div class="quiz-header">
                 <button class="back-btn btn" onclick="showBackModal()">← Back</button>
-                <div id="quizTitle" class="quiz-title-mobile"></div>
+                <div id="quizTitle" style="font-size: 1.5em; color: #64b5f6; font-weight: bold;"></div>
             </div>
 
             <div class="progress-bar">
@@ -797,8 +481,8 @@
             </div>
             
             <div class="question-header">
-                <div id="questionNumber" style="font-size: 1em; color: #64b5f6; font-weight: bold;"></div>
-                <div id="currentScore" style="color: #81c784; font-size: 0.9em;">Score: 0/0</div>
+                <div id="questionNumber" style="font-size: 1.2em; color: #64b5f6; font-weight: bold;"></div>
+                <div id="currentScore" style="color: #81c784;">Score: 0/0</div>
             </div>
 
             <div class="question">
@@ -834,10 +518,6 @@
     <div id="shareableResult" class="shareable-result">
         <div class="logo-section">
             <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
-    <!-- Hidden shareable result for screenshot -->
-    <div id="shareableResult" class="shareable-result">
-        <div class="logo-section">
-            <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
             <div style="font-size: 1.5em; color: #64b5f6; font-weight: bold;">stay IT ready</div>
         </div>
         <div class="score-section" id="shareScore">I just scored 10/12!</div>
@@ -859,11 +539,8 @@
     </div>
 
     <script>
-        // Questions database - will be loaded from assets/questions.json
-        let questionsDB = {};
-        let isQuestionsLoaded = false;
-
-        // Quiz state
+        // Global variables
+        let questionsDB = null;
         let currentQuiz = [];
         let currentQuestionIndex = 0;
         let score = 0;
@@ -872,103 +549,93 @@
         let userNickname = '';
 
         const categoryNames = {
-            sql: 'SQL', unix: 'UNIX', bash: 'BASH', plsql: 'PL/SQL', ubuntu: 'Ubuntu/Debian', rhel: 'RHEL/CentOS', mixed: 'Mixed'
+            sql: 'SQL', unix: 'UNIX', bash: 'BASH', plsql: 'PL/SQL', 
+            ubuntu: 'Ubuntu/Debian', rhel: 'RHEL/CentOS', mixed: 'Mixed'
         };
 
-        // Load questions from external file
-        async function loadQuestions() {
-            try {
-                const response = await fetch('assets/questions.json');
-                questionsDB = await response.json();
-                isQuestionsLoaded = true;
-                console.log('Questions loaded successfully');
-            } catch (error) {
-                console.error('Error loading questions:', error);
-                alert('Failed to load quiz questions. Please refresh the page and try again.');
-            }
-        }
-
-        // Welcome popup functions
-        function showWelcomePopup() {
-            const popup = document.getElementById('welcomePopup');
-            popup.style.display = 'flex';
-        }
-
-        function closeWelcomePopup() {
-            const popup = document.getElementById('welcomePopup');
-            popup.style.display = 'none';
-        }
-
-        // Feedback modal functions
-        function showFeedbackModal() {
-            document.getElementById('hiddenNickname').value = userNickname || 'Anonymous';
-            document.getElementById('hiddenPageUrl').value = window.location.href;
-            document.getElementById('feedbackModal').style.display = 'flex';
-        }
-
-        function closeFeedbackModal() {
-            document.getElementById('feedbackModal').style.display = 'none';
-            document.getElementById('feedbackText').value = '';
-        }
-
-        // Handle form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const feedbackForm = document.getElementById('feedbackForm');
-            if (feedbackForm) {
-                feedbackForm.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    
-                    const formData = new FormData(feedbackForm);
-                    
-                    fetch('/', {
-                        method: 'POST',
-                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                        body: new URLSearchParams(formData).toString()
-                    })
-                    .then(() => {
-                        alert('Thank you for your feedback! We\'ll review it soon.');
-                        closeFeedbackModal();
-                        
-                        gtag('event', 'feedback_sent', {
-                            'method': 'netlify_forms'
-                        });
-                    })
-                    .catch((error) => {
-                        alert('Sorry, there was an error sending your feedback. Please try again.');
-                        console.error('Error:', error);
-                    });
-                });
-            }
-        });
-
-        // Close modals with ESC key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeWelcomePopup();
-                closeFeedbackModal();
-                hideBackModal();
-            }
-        });
-
-        // Initialize
+        // Initialize app
         window.onload = function() {
             loadQuestions();
-            
-            setTimeout(() => {
-                document.getElementById('splashScreen').classList.add('hidden');
-                document.getElementById('nicknameScreen').classList.remove('hidden');
-                showWelcomePopup();
-            }, 3000);
         };
 
-        // Nickname handling
-        document.getElementById('nicknameInput').addEventListener('input', function(e) {
-            document.getElementById('goBtn').disabled = e.target.value.trim().length === 0;
-        });
+        // Load questions from JSON file
+        async function loadQuestions() {
+            try {
+                document.getElementById('loadingText').textContent = 'Loading questions...';
+                document.getElementById('startBtn').style.display = 'none';
+                
+                const response = await fetch('questions.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                questionsDB = await response.json();
+                
+                // Validate that we have all required data
+                if (!validateQuestionsDB(questionsDB)) {
+                    throw new Error('Invalid questions data structure');
+                }
+                
+                document.getElementById('loadingText').textContent = 'Questions loaded successfully!';
+                document.getElementById('startBtn').style.display = 'inline-block';
+                
+            } catch (error) {
+                console.error('Error loading questions:', error);
+                showError('Failed to load quiz questions. Please check your internet connection and try again.');
+            }
+        }
 
-        document.getElementById('nicknameInput').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter' && !document.getElementById('goBtn').disabled) {
-                goToQuizzes();
+        // Validate questions database structure
+        function validateQuestionsDB(db) {
+            const requiredCategories = ['sql', 'unix', 'bash', 'plsql', 'ubuntu', 'rhel'];
+            const requiredDifficulties = ['easy', 'medium', 'hard'];
+            
+            for (const category of requiredCategories) {
+                if (!db[category]) return false;
+                
+                for (const difficulty of requiredDifficulties) {
+                    if (!db[category][difficulty] || !Array.isArray(db[category][difficulty])) {
+                        return false;
+                    }
+                    
+                    // Check minimum question counts for quiz requirements
+                    const questions = db[category][difficulty];
+                    if (difficulty === 'easy' && questions.length < 7) return false;
+                    if (difficulty === 'medium' && questions.length < 3) return false;
+                    if (difficulty === 'hard' && questions.length < 2) return false;
+                }
+            }
+            return true;
+        }
+
+        // Show error screen
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('errorScreen').classList.remove('hidden');
+        }
+
+        // Show nickname screen
+        function showNicknameScreen() {
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('nicknameScreen').classList.remove('hidden');
+        }
+
+        // Nickname handling
+        document.addEventListener('DOMContentLoaded', function() {
+            const nicknameInput = document.getElementById('nicknameInput');
+            const goBtn = document.getElementById('goBtn');
+            
+            if (nicknameInput) {
+                nicknameInput.addEventListener('input', function(e) {
+                    goBtn.disabled = e.target.value.trim().length === 0;
+                });
+
+                nicknameInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter' && !goBtn.disabled) {
+                        goToQuizzes();
+                    }
+                });
             }
         });
 
@@ -996,6 +663,7 @@
             const indices = [0, 1, 2, 3];
             const shuffledIndices = shuffleArray(indices);
             return {
+                id: question.id,
                 question: question.question,
                 options: shuffledIndices.map(i => question.options[i]),
                 correct: shuffledIndices.indexOf(question.correct),
@@ -1004,11 +672,6 @@
         }
 
         function selectQuestions(category) {
-            if (!isQuestionsLoaded) {
-                alert('Questions are still loading. Please wait a moment and try again.');
-                return [];
-            }
-
             let questions = [];
             
             if (category === 'mixed') {
@@ -1018,29 +681,22 @@
                 const hardQuestions = [];
                 
                 allCategories.forEach(cat => {
-                    if (questionsDB[cat]) {
-                        easyQuestions.push(...(questionsDB[cat].easy || []));
-                        mediumQuestions.push(...(questionsDB[cat].medium || []));
-                        hardQuestions.push(...(questionsDB[cat].hard || []));
-                    }
+                    easyQuestions.push(...questionsDB[cat].easy);
+                    mediumQuestions.push(...questionsDB[cat].medium);
+                    hardQuestions.push(...questionsDB[cat].hard);
                 });
                 
                 questions = [
-                    ...shuffleArray(easyQuestions).slice(0, 8),
+                    ...shuffleArray(easyQuestions).slice(0, 7),
                     ...shuffleArray(mediumQuestions).slice(0, 3),
-                    ...shuffleArray(hardQuestions).slice(0, 1)
+                    ...shuffleArray(hardQuestions).slice(0, 2)
                 ];
             } else {
                 const categoryData = questionsDB[category];
-                if (!categoryData) {
-                    alert(`Category "${category}" not found in questions database.`);
-                    return [];
-                }
-                
                 questions = [
-                    ...shuffleArray(categoryData.easy || []).slice(0, 8),
-                    ...shuffleArray(categoryData.medium || []).slice(0, 3),
-                    ...shuffleArray(categoryData.hard || []).slice(0, 1)
+                    ...shuffleArray(categoryData.easy).slice(0, 7),
+                    ...shuffleArray(categoryData.medium).slice(0, 3),
+                    ...shuffleArray(categoryData.hard).slice(0, 2)
                 ];
             }
             
@@ -1048,32 +704,26 @@
         }
 
         function startQuiz(category) {
-            if (!isQuestionsLoaded) {
-                alert('Questions are still loading. Please wait a moment and try again.');
-                return;
-            }
-
             selectedCategory = category;
             gtag('event', 'quiz_start', {
-                'quiz_category': category,
-                'user_nickname': userNickname
+              'quiz_category': category,
+              'user_nickname': userNickname
             });
             
-            currentQuiz = selectQuestions(category);
-            
-            if (currentQuiz.length === 0) {
-                alert('No questions available for this category. Please try another category.');
-                return;
+            try {
+                currentQuiz = selectQuestions(category);
+                currentQuestionIndex = 0;
+                score = 0;
+                
+                document.getElementById('categoryScreen').classList.add('hidden');
+                document.getElementById('quizContainer').classList.remove('hidden');
+                document.getElementById('quizTitle').textContent = `${categoryNames[category]} Quiz`;
+                
+                showQuestion();
+            } catch (error) {
+                console.error('Error starting quiz:', error);
+                alert('Error starting quiz. Please try again.');
             }
-            
-            currentQuestionIndex = 0;
-            score = 0;
-            
-            document.getElementById('categoryScreen').classList.add('hidden');
-            document.getElementById('quizContainer').classList.remove('hidden');
-            document.getElementById('quizTitle').textContent = `${categoryNames[category]} Quiz`;
-            
-            showQuestion();
         }
 
         function showQuestion() {
@@ -1168,10 +818,10 @@
             }
             
             gtag('event', 'quiz_complete', {
-                'quiz_category': selectedCategory,
-                'score': score,
-                'total': currentQuiz.length,
-                'percentage': percentage
+              'quiz_category': selectedCategory,
+              'score': score,
+              'total': currentQuiz.length,
+              'percentage': percentage
             });
             
             document.getElementById('scoreDisplay').innerHTML = `
@@ -1181,54 +831,35 @@
                 <div style="color: #b0b0b0; font-size: 0.85em; margin-top: 12px;">Great job, ${userNickname}!</div>
             `;
 
+            // Update shareable result
             document.getElementById('shareScore').textContent = `I just scored ${score}/${currentQuiz.length}!`;
             document.getElementById('shareCategory').textContent = `${categoryNames[selectedCategory]} Quiz Results`;
         }
 
         // Share functionality
         function shareToWhatsApp() {
-            gtag('event', 'share', {
-                'method': 'whatsapp',
-                'content_type': 'quiz_result'
-            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`;
             const url = `https://wa.me/?text=${encodeURIComponent(text)} ${encodeURIComponent('https://stayitready.com')}`;
             window.open(url, '_blank');
         }
 
         function shareToFacebook() {
-            gtag('event', 'share', {
-                'method': 'facebook',
-                'content_type': 'quiz_result'
-            });
             const url = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent('https://stayitready.com')}&quote=${encodeURIComponent(`I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`)}`;
             window.open(url, '_blank');
         }
 
         function shareToTwitter() {
-            gtag('event', 'share', {
-                'method': 'twitter',
-                'content_type': 'quiz_result'
-            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`;
             const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://stayitready.com')}`;
             window.open(url, '_blank');
         }
 
         function shareToLinkedIn() {
-            gtag('event', 'share', {
-                'method': 'linkedin',
-                'content_type': 'quiz_result'
-            });
             const url = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://stayitready.com')}&title=${encodeURIComponent('IT Engineer Quiz Results')}&summary=${encodeURIComponent(`I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that?`)}`;
             window.open(url, '_blank');
         }
 
         function copyShareLink() {
-            gtag('event', 'share', {
-                'method': 'copy_link',
-                'content_type': 'quiz_result'
-            });
             const text = `I just scored ${score}/${currentQuiz.length} on the ${categoryNames[selectedCategory]} quiz! Can you beat that? Check it out: https://stayitready.com`;
             
             if (navigator.clipboard && window.isSecureContext) {
@@ -1283,18 +914,9 @@
         }
 
         window.onclick = function(event) {
-            const backModal = document.getElementById('backModal');
-            const welcomePopup = document.getElementById('welcomePopup');
-            const feedbackModal = document.getElementById('feedbackModal');
-            
-            if (event.target === backModal) {
+            const modal = document.getElementById('backModal');
+            if (event.target === modal) {
                 hideBackModal();
-            }
-            if (event.target === welcomePopup) {
-                closeWelcomePopup();
-            }
-            if (event.target === feedbackModal) {
-                closeFeedbackModal();
             }
         }
     </script>
