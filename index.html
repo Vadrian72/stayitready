@@ -877,16 +877,16 @@
                 });
                 
                 questions = [
-                    ...shuffleArray(easyQuestions).slice(0, 13),
-                    ...shuffleArray(mediumQuestions).slice(0, 5),
+                    ...shuffleArray(easyQuestions).slice(0, 8),
+                    ...shuffleArray(mediumQuestions).slice(0, 3),
                     ...shuffleArray(hardQuestions).slice(0, 2)
                 ];
             } else {
                 const categoryData = questionsDB[category];
                 if (categoryData) {
                     questions = [
-                        ...shuffleArray(categoryData.easy || []).slice(0, 13),
-                        ...shuffleArray(categoryData.medium || []).slice(0, 5),
+                        ...shuffleArray(categoryData.easy || []).slice(0, 8),
+                        ...shuffleArray(categoryData.medium || []).slice(0, 3),
                         ...shuffleArray(categoryData.hard || []).slice(0, 2)
                     ];
                 }
