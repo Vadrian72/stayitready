@@ -263,6 +263,8 @@
             max-width: 400px;
             margin: 20px auto;
         }
+        .quiz-container {
+            text-align: left;
         }
         .quiz-header {
             display: flex;
@@ -526,44 +528,9 @@
         z-index: 100;
         background: rgba(45, 45, 68, 0.95);
         backdrop-filter: blur(10px);
-        padding: 10px 10px 10px 70px; /* Left padding pentru hamburger space */
+        padding: 10px;
         margin: 0;
         border-radius: 0;
-        justify-content: center; /* Center content */
-        text-align: center;
-    }
-    /* Back button moved to bottom */
-.quiz-container .back-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    background: linear-gradient(135deg, #ef5350, #f44336);
-    padding: 10px 25px;
-    font-size: 0.9em;
-    min-width: 100px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-}
-/* Add bottom padding to quiz container to avoid overlap */
-.quiz-container {
-    padding-top: 80px;
-    padding-bottom: 80px; /* Space for back button */
-}
-    .quiz-header .back-btn {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 100;
-    background: rgba(45, 45, 68, 0.95);
-    backdrop-filter: blur(10px);
-    padding: 10px;
-    margin: 0;
-    border-radius: 0;
-    justify-content: center;
-    text-align: center;
-}
     }
     .quiz-container {
         padding-top: 80px; /* Space for fixed header */
