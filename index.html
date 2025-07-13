@@ -535,10 +535,19 @@
         text-align: center;
     }
     .quiz-header .back-btn {
-    position: absolute;
-    left: 70px; /* After hamburger button */
-    top: 50%;
-    transform: translateY(-50%);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(45, 45, 68, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px;
+    margin: 0;
+    border-radius: 0;
+    justify-content: center;
+    text-align: center;
+}
     }
     .quiz-container {
         padding-top: 80px; /* Space for fixed header */
