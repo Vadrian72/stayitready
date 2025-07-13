@@ -51,12 +51,144 @@
             border-radius: 15px;
             padding: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
         }
         
-        /* Loading Screen */
-        .loading-screen {
+        /* Hamburger Button */
+        .hamburger-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
+            border: none;
+            border-radius: 8px;
+            padding: 10px 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 18px;
+            opacity: 1;
+            visibility: visible;
+        }
+        .hamburger-btn:hover {
+            transform: translateY(-2px);
+        }
+        .hamburger-btn.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        
+        /* Side Panel */
+        .side-panel {
+            position: fixed;
+            top: 0;
+            left: -300px;
+            width: 300px;
+            height: 100vh;
+            background: rgba(30, 30, 46, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 2px solid #64b5f6;
+            z-index: 1000;
+            transition: left 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .side-panel.open {
+            left: 0;
+        }
+        .side-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(100, 181, 246, 0.3);
+        }
+        .nickname-display {
+            color: #64b5f6;
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        .rename-btn {
+            background: transparent;
+            border: 1px solid #64b5f6;
+            color: #64b5f6;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.8em;
+            transition: all 0.2s;
+        }
+        .rename-btn:hover {
+            background: #64b5f6;
+            color: white;
+        }
+        .side-panel-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .menu-item {
+            background: rgba(100, 181, 246, 0.1);
+            border: 1px solid rgba(100, 181, 246, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+            color: #e0e0e0;
+        }
+        .menu-item:hover {
+            background: rgba(100, 181, 246, 0.2);
+            border-color: #64b5f6;
+        }
+        .side-panel-footer {
+            margin-top: auto;
+            text-align: center;
+            color: #b0b0b0;
+            font-size: 0.9em;
+            padding-top: 15px;
+            border-top: 1px solid rgba(100, 181, 246, 0.3);
+        }
+        
+        /* Overlay */
+        .panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .panel-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .splash-screen {
             text-align: center;
             padding: 50px 0;
+        }
+        .loader {
+            margin: 20px auto;
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(100, 181, 246, 0.3);
+            border-top: 3px solid #64b5f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         .logo-image {
             max-width: 300px;
@@ -74,75 +206,17 @@
             color: #81c784;
             margin-bottom: 20px;
         }
-        
-        /* Animated Loader */
-        .loader {
-            display: inline-block;
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(100, 181, 246, 0.3);
-            border-radius: 50%;
-            border-top: 3px solid #64b5f6;
-            animation: spin 1s linear infinite;
-            margin: 20px 0;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .loading-text {
-            font-size: 1.2em;
-            color: #81c784;
-            margin: 20px 0;
-        }
-        
-        .start-btn {
-            background: linear-gradient(135deg, #64b5f6, #42a5f5);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            cursor: pointer;
-            margin: 20px 0;
-            transition: transform 0.2s;
-            display: none;
-        }
-        .start-btn:hover {
-            transform: translateY(-2px);
-        }
-        
-        /* Error Screen */
-        .error-screen {
-            text-align: center;
-            padding: 50px 0;
-            display: none;
-        }
-        .error-title {
-            color: #ef5350;
-            font-size: 2em;
+        .logo {
+            font-size: 3em;
+            font-weight: bold;
+            color: #64b5f6;
             margin-bottom: 20px;
+            animation: pulse 2s infinite;
         }
-        .error-message {
-            color: #e0e0e0;
-            font-size: 1.1em;
-            margin-bottom: 30px;
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
-        .retry-btn {
-            background: linear-gradient(135deg, #ef5350, #f44336);
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .retry-btn:hover {
-            transform: translateY(-2px);
-        }
-        
         .hidden { display: none; }
         .nickname-screen, .category-screen {
             text-align: center;
@@ -419,36 +493,64 @@
             font-size: 1.1em;
             color: #e0e0e0;
         }
+        
+        .error-message {
+            background: rgba(239, 83, 80, 0.2);
+            border: 1px solid #ef5350;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+            color: #ef5350;
+        }
+        
         @media (max-width: 768px) {
             .container { padding: 20px; margin: 10px; }
             .main-title { font-size: 2em; }
+            .logo { font-size: 2.5em; }
             .quiz-header { flex-direction: column; gap: 10px; }
             .question-header { flex-direction: column; gap: 5px; }
             .logo-image { max-width: 200px; }
             .brand-name { font-size: 2.2em; }
             .share-buttons { flex-direction: column; }
             .share-btn { min-width: 200px; }
+            .side-panel { width: 280px; left: -280px; }
         }
     </style>
 </head>
 <body>
+    <!-- Hamburger Button -->
+    <button class="hamburger-btn" onclick="toggleSidePanel()" aria-label="Open menu">
+        ☰
+    </button>
+    
+    <!-- Panel Overlay -->
+    <div class="panel-overlay" onclick="closeSidePanel()"></div>
+    
+    <!-- Side Panel -->
+    <div class="side-panel" id="sidePanel">
+        <div class="side-panel-header">
+            <div class="nickname-display" id="panelNickname">Guest</div>
+            <button class="rename-btn" onclick="showRenameModal()" aria-label="Rename user">Rename</button>
+        </div>
+        <div class="side-panel-menu">
+            <div class="menu-item" onclick="showPlaceholderMessage('About Us')">About Us</div>
+            <div class="menu-item" onclick="showPlaceholderMessage('Send Feedback')">Send Feedback</div>
+            <div class="menu-item" onclick="showPlaceholderMessage('Leaderboards')">Leaderboards</div>
+        </div>
+        <div class="side-panel-footer">
+            Version 2.0.40 Beta
+        </div>
+    </div>
+
     <div class="container">
-        <!-- Loading Screen -->
-        <div id="loadingScreen" class="loading-screen">
+        <!-- Splash Screen -->
+        <div id="splashScreen" class="splash-screen">
             <img src="assets/logo.png" alt="stay IT ready" class="logo-image">
             <div class="brand-name">stay IT ready</div>
             <div class="brand-subtitle">Quiz Platform</div>
             <div class="loader"></div>
-            <div class="loading-text" id="loadingText">Loading questions...</div>
-            <button id="startBtn" class="start-btn" onclick="showNicknameScreen()">Start Quiz</button>
-        </div>
-
-        <!-- Error Screen -->
-        <div id="errorScreen" class="error-screen">
-            <img src="assets/logo.png" alt="stay IT ready" class="logo-image">
-            <div class="error-title">Oops! Something went wrong</div>
-            <div class="error-message" id="errorMessage">Failed to load quiz questions. Please check your internet connection and try again.</div>
-            <button class="retry-btn" onclick="loadQuestions()">Try Again</button>
+            <div id="loadingStatus" style="margin-top: 20px; color: #81c784;">Loading questions...</div>
         </div>
 
         <!-- Nickname Screen -->
@@ -457,7 +559,7 @@
             <p style="font-size: 1.2em; margin-bottom: 20px;">Please enter your alias</p>
             <input type="text" id="nicknameInput" class="nickname-input" placeholder="Enter your nickname..." maxlength="20">
             <br>
-            <button id="goBtn" class="btn" onclick="goToQuizzes()" disabled>Go to Quizzes</button>
+            <button id="goBtn" class="btn" onclick="goToQuizzes()" disabled aria-label="Go to quiz categories">Go to Quizzes</button>
         </div>
 
         <!-- Category Selection -->
@@ -465,21 +567,15 @@
             <h1 class="main-title">IT ENGINEER QUIZ</h1>
             <div id="welcomeMessage" style="font-size: 1.2em; color: #81c784; margin-bottom: 25px;"></div>
             
-            <div class="category-grid">
-                <button class="btn" onclick="startQuiz('sql')">SQL Queries</button>
-                <button class="btn" onclick="startQuiz('unix')">UNIX Commands</button>
-                <button class="btn" onclick="startQuiz('bash')">BASH</button>
-                <button class="btn" onclick="startQuiz('plsql')">PL/SQL</button>
-                <button class="btn" onclick="startQuiz('ubuntu')">Ubuntu/Debian</button>
-                <button class="btn" onclick="startQuiz('rhel')">RHEL/CentOS</button>
-                <button class="btn" onclick="startQuiz('mixed')">Mixed</button>
+            <div class="category-grid" id="categoryGrid">
+                <!-- Categories will be populated dynamically -->
             </div>
         </div>
 
         <!-- Quiz Container -->
         <div id="quizContainer" class="quiz-container hidden">
             <div class="quiz-header">
-                <button class="back-btn btn" onclick="showBackModal()">← Back</button>
+                <button class="back-btn btn" onclick="showBackModal()" aria-label="Go back to categories">← Back</button>
                 <div id="quizTitle" style="font-size: 1.5em; color: #64b5f6; font-weight: bold;"></div>
             </div>
 
@@ -496,7 +592,7 @@
                 <h3 id="questionText"></h3>
                 <div id="optionsContainer" class="options"></div>
                 <div id="feedback" class="feedback"></div>
-                <button id="nextBtn" class="btn hidden" onclick="nextQuestion()">Next Question</button>
+                <button id="nextBtn" class="btn hidden" onclick="nextQuestion()" aria-label="Next question">Next Question</button>
             </div>
         </div>
 
@@ -509,15 +605,15 @@
             <div class="share-section">
                 <div class="share-title">Share your results</div>
                 <div class="share-buttons">
-                    <button class="share-btn whatsapp" onclick="shareToWhatsApp()">WhatsApp</button>
-                    <button class="share-btn facebook" onclick="shareToFacebook()">Facebook</button>
-                    <button class="share-btn twitter" onclick="shareToTwitter()">Twitter</button>
-                    <button class="share-btn linkedin" onclick="shareToLinkedIn()">LinkedIn</button>
-                    <button class="share-btn copy" onclick="copyShareLink()">Copy Link</button>
+                    <button class="share-btn whatsapp" onclick="shareToWhatsApp()" aria-label="Share on WhatsApp">WhatsApp</button>
+                    <button class="share-btn facebook" onclick="shareToFacebook()" aria-label="Share on Facebook">Facebook</button>
+                    <button class="share-btn twitter" onclick="shareToTwitter()" aria-label="Share on Twitter">Twitter</button>
+                    <button class="share-btn linkedin" onclick="shareToLinkedIn()" aria-label="Share on LinkedIn">LinkedIn</button>
+                    <button class="share-btn copy" onclick="copyShareLink()" aria-label="Copy share link">Copy Link</button>
                 </div>
             </div>
             
-            <button class="btn" onclick="restartQuiz()" style="background: linear-gradient(135deg, #81c784, #66bb6a); margin-top: 20px;">Start New Quiz</button>
+            <button class="btn" onclick="restartQuiz()" style="background: linear-gradient(135deg, #81c784, #66bb6a); margin-top: 20px;" aria-label="Start new quiz">Start New Quiz</button>
         </div>
     </div>
 
@@ -527,7 +623,7 @@
             <img src="assets/logo.png" alt="stay IT ready" style="max-width: 150px; height: auto; margin-bottom: 10px;">
             <div style="font-size: 1.5em; color: #64b5f6; font-weight: bold;">stay IT ready</div>
         </div>
-        <div class="score-section" id="shareScore">I just scored 10/12!</div>
+        <div class="score-section" id="shareScore">I just scored 18/20!</div>
         <div style="font-size: 1.3em; margin-bottom: 20px;">Can you beat that?</div>
         <div class="category-section" id="shareCategory">SQL Quiz Results</div>
         <div class="domain-section">stayitready.com</div>
@@ -539,107 +635,158 @@
             <h3 style="color: #64b5f6; margin-bottom: 15px;">Confirm Exit</h3>
             <p style="margin-bottom: 20px;">Are you sure you want to go back? You will lose your current progress.</p>
             <div class="modal-buttons">
-                <button class="modal-btn yes" onclick="confirmBack()">Yes</button>
-                <button class="modal-btn no" onclick="hideBackModal()">No</button>
+                <button class="modal-btn yes" onclick="confirmBack()" aria-label="Yes, go back">Yes</button>
+                <button class="modal-btn no" onclick="hideBackModal()" aria-label="No, continue quiz">No</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rename Modal -->
+    <div id="renameModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color: #64b5f6; margin-bottom: 15px;">Change Nickname</h3>
+            <input type="text" id="renameInput" class="nickname-input" placeholder="Enter new nickname..." maxlength="20">
+            <div class="modal-buttons">
+                <button class="modal-btn yes" onclick="confirmRename()" aria-label="Save new nickname">Save</button>
+                <button class="modal-btn no" onclick="hideRenameModal()" aria-label="Cancel rename">Cancel</button>
             </div>
         </div>
     </div>
 
     <script>
         // Global variables
-        let questionsDB = null;
+        let questionsDB = {};
         let currentQuiz = [];
         let currentQuestionIndex = 0;
         let score = 0;
         let selectedCategory = '';
         let answerSelected = false;
         let userNickname = '';
+        let exploreMode = false;
 
         const categoryNames = {
             sql: 'SQL', unix: 'UNIX', bash: 'BASH', plsql: 'PL/SQL', 
             ubuntu: 'Ubuntu/Debian', rhel: 'RHEL/CentOS', mixed: 'Mixed'
         };
 
-        // Initialize app
-        window.onload = function() {
-            loadQuestions();
-        };
-
         // Load questions from JSON file
         async function loadQuestions() {
             try {
-                document.getElementById('loadingText').textContent = 'Loading questions...';
-                document.getElementById('startBtn').style.display = 'none';
-                
                 const response = await fetch('questions.json');
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
-                
                 questionsDB = await response.json();
-                
-                // Validate that we have all required data
-                if (!validateQuestionsDB(questionsDB)) {
-                    throw new Error('Invalid questions data structure');
-                }
-                
-                document.getElementById('loadingText').textContent = 'Questions loaded successfully!';
-                document.getElementById('startBtn').style.display = 'inline-block';
-                
+                document.getElementById('loadingStatus').textContent = 'Questions loaded successfully!';
+                return true;
             } catch (error) {
                 console.error('Error loading questions:', error);
-                showError('Failed to load quiz questions. Please check your internet connection and try again.');
+                document.getElementById('loadingStatus').innerHTML = `
+                    <div class="error-message">
+                        Failed to load questions. Entering explore mode.<br>
+                        <small>Error: ${error.message}</small>
+                    </div>
+                `;
+                exploreMode = true;
+                return false;
             }
         }
 
-        // Validate questions database structure
-        function validateQuestionsDB(db) {
-            const requiredCategories = ['sql', 'unix', 'bash', 'plsql', 'ubuntu', 'rhel'];
-            const requiredDifficulties = ['easy', 'medium', 'hard'];
+        // Initialize application
+        window.onload = async function() {
+            // Load saved nickname
+            const savedNickname = localStorage.getItem('quiz_nickname');
+            if (savedNickname) {
+                userNickname = savedNickname;
+                document.getElementById('panelNickname').textContent = savedNickname;
+            }
+
+            // Load questions and show appropriate screen after delay
+            const questionsLoaded = await loadQuestions();
             
-            for (const category of requiredCategories) {
-                if (!db[category]) return false;
+            setTimeout(() => {
+                document.getElementById('splashScreen').classList.add('hidden');
                 
-                for (const difficulty of requiredDifficulties) {
-                    if (!db[category][difficulty] || !Array.isArray(db[category][difficulty])) {
-                        return false;
-                    }
-                    
-                    // Check minimum question counts for quiz requirements
-                    const questions = db[category][difficulty];
-                    if (difficulty === 'easy' && questions.length < 7) return false;
-                    if (difficulty === 'medium' && questions.length < 3) return false;
-                    if (difficulty === 'hard' && questions.length < 2) return false;
+                if (userNickname) {
+                    // Skip nickname screen if we have saved nickname
+                    document.getElementById('categoryScreen').classList.remove('hidden');
+                    document.getElementById('welcomeMessage').textContent = 
+                        `Welcome back ${userNickname}! Please select the category you would like to start the questionnaire.`;
+                    populateCategories();
+                } else {
+                    document.getElementById('nicknameScreen').classList.remove('hidden');
                 }
+            }, 2500);
+        };
+
+        // Side panel functions
+        function toggleSidePanel() {
+            const panel = document.getElementById('sidePanel');
+            const overlay = document.querySelector('.panel-overlay');
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            
+            if (panel.classList.contains('open')) {
+                closeSidePanel();
+            } else {
+                panel.classList.add('open');
+                overlay.classList.add('active');
+                hamburgerBtn.classList.add('hidden');
             }
-            return true;
         }
 
-        // Show error screen
-        function showError(message) {
-            document.getElementById('errorMessage').textContent = message;
-            document.getElementById('loadingScreen').classList.add('hidden');
-            document.getElementById('errorScreen').classList.remove('hidden');
+        function closeSidePanel() {
+            const panel = document.getElementById('sidePanel');
+            const overlay = document.querySelector('.panel-overlay');
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            
+            panel.classList.remove('open');
+            overlay.classList.remove('active');
+            hamburgerBtn.classList.remove('hidden');
         }
 
-        // Show nickname screen
-        function showNicknameScreen() {
-            document.getElementById('loadingScreen').classList.add('hidden');
-            document.getElementById('nicknameScreen').classList.remove('hidden');
+        function showPlaceholderMessage(feature) {
+            alert(`${feature} feature is coming soon! Stay tuned for updates.`);
+            closeSidePanel();
+        }
+
+        function showRenameModal() {
+            document.getElementById('renameInput').value = userNickname;
+            document.getElementById('renameModal').style.display = 'block';
+            closeSidePanel();
+        }
+
+        function hideRenameModal() {
+            document.getElementById('renameModal').style.display = 'none';
+        }
+
+        function confirmRename() {
+            const newNickname = document.getElementById('renameInput').value.trim();
+            if (newNickname) {
+                userNickname = newNickname;
+                localStorage.setItem('quiz_nickname', newNickname);
+                document.getElementById('panelNickname').textContent = newNickname;
+                
+                // Update welcome message if on category screen
+                const welcomeMsg = document.getElementById('welcomeMessage');
+                if (welcomeMsg && !welcomeMsg.classList.contains('hidden')) {
+                    welcomeMsg.textContent = 
+                        `Welcome ${newNickname}! Please select the category you would like to start the questionnaire.`;
+                }
+                
+                hideRenameModal();
+            }
         }
 
         // Nickname handling
         document.addEventListener('DOMContentLoaded', function() {
             const nicknameInput = document.getElementById('nicknameInput');
-            const goBtn = document.getElementById('goBtn');
-            
             if (nicknameInput) {
                 nicknameInput.addEventListener('input', function(e) {
-                    goBtn.disabled = e.target.value.trim().length === 0;
+                    document.getElementById('goBtn').disabled = e.target.value.trim().length === 0;
                 });
 
                 nicknameInput.addEventListener('keypress', function(e) {
-                    if (e.key === 'Enter' && !goBtn.disabled) {
+                    if (e.key === 'Enter' && !document.getElementById('goBtn').disabled) {
                         goToQuizzes();
                     }
                 });
@@ -647,13 +794,44 @@
         });
 
         function goToQuizzes() {
-            userNickname = document.getElementById('nicknameInput').value.trim();
-            if (userNickname) {
+            const nickname = document.getElementById('nicknameInput').value.trim();
+            if (nickname) {
+                userNickname = nickname;
+                localStorage.setItem('quiz_nickname', nickname);
+                document.getElementById('panelNickname').textContent = nickname;
                 document.getElementById('nicknameScreen').classList.add('hidden');
                 document.getElementById('categoryScreen').classList.remove('hidden');
                 document.getElementById('welcomeMessage').textContent = 
-                    `Welcome ${userNickname}! Please select the category you would like to start the questionnaire.`;
+                    `Welcome ${nickname}! Please select the category you would like to start the questionnaire.`;
+                populateCategories();
             }
+        }
+
+        // Populate categories dynamically
+        function populateCategories() {
+            const categoryGrid = document.getElementById('categoryGrid');
+            categoryGrid.innerHTML = '';
+
+            if (exploreMode) {
+                categoryGrid.innerHTML = `
+                    <div class="error-message">
+                        Questions not available. All categories are empty in explore mode.
+                    </div>
+                `;
+                return;
+            }
+
+            // Create category buttons based on available data
+            Object.keys(categoryNames).forEach(category => {
+                if (questionsDB[category]) {
+                    const button = document.createElement('button');
+                    button.className = 'btn';
+                    button.textContent = categoryNames[category];
+                    button.setAttribute('aria-label', `Start ${categoryNames[category]} quiz`);
+                    button.onclick = () => startQuiz(category);
+                    categoryGrid.appendChild(button);
+                }
+            });
         }
 
         // Utility functions
@@ -670,7 +848,6 @@
             const indices = [0, 1, 2, 3];
             const shuffledIndices = shuffleArray(indices);
             return {
-                id: question.id,
                 question: question.question,
                 options: shuffledIndices.map(i => question.options[i]),
                 correct: shuffledIndices.indexOf(question.correct),
@@ -679,6 +856,10 @@
         }
 
         function selectQuestions(category) {
+            if (exploreMode) {
+                return [];
+            }
+
             let questions = [];
             
             if (category === 'mixed') {
@@ -688,49 +869,58 @@
                 const hardQuestions = [];
                 
                 allCategories.forEach(cat => {
-                    easyQuestions.push(...questionsDB[cat].easy);
-                    mediumQuestions.push(...questionsDB[cat].medium);
-                    hardQuestions.push(...questionsDB[cat].hard);
+                    if (questionsDB[cat]) {
+                        if (questionsDB[cat].easy) easyQuestions.push(...questionsDB[cat].easy);
+                        if (questionsDB[cat].medium) mediumQuestions.push(...questionsDB[cat].medium);
+                        if (questionsDB[cat].hard) hardQuestions.push(...questionsDB[cat].hard);
+                    }
                 });
                 
                 questions = [
-                    ...shuffleArray(easyQuestions).slice(0, 7),
-                    ...shuffleArray(mediumQuestions).slice(0, 3),
+                    ...shuffleArray(easyQuestions).slice(0, 13),
+                    ...shuffleArray(mediumQuestions).slice(0, 5),
                     ...shuffleArray(hardQuestions).slice(0, 2)
                 ];
             } else {
                 const categoryData = questionsDB[category];
-                questions = [
-                    ...shuffleArray(categoryData.easy).slice(0, 7),
-                    ...shuffleArray(categoryData.medium).slice(0, 3),
-                    ...shuffleArray(categoryData.hard).slice(0, 2)
-                ];
+                if (categoryData) {
+                    questions = [
+                        ...shuffleArray(categoryData.easy || []).slice(0, 13),
+                        ...shuffleArray(categoryData.medium || []).slice(0, 5),
+                        ...shuffleArray(categoryData.hard || []).slice(0, 2)
+                    ];
+                }
             }
             
-            return shuffleArray(questions).map(q => randomizeAnswers(q));
+            return questions.map(q => randomizeAnswers(q));
         }
 
         function startQuiz(category) {
+            if (exploreMode) {
+                alert('Category is empty in explore mode. Questions not available.');
+                return;
+            }
+
             selectedCategory = category;
             gtag('event', 'quiz_start', {
               'quiz_category': category,
               'user_nickname': userNickname
             });
             
-            try {
-                currentQuiz = selectQuestions(category);
-                currentQuestionIndex = 0;
-                score = 0;
-                
-                document.getElementById('categoryScreen').classList.add('hidden');
-                document.getElementById('quizContainer').classList.remove('hidden');
-                document.getElementById('quizTitle').textContent = `${categoryNames[category]} Quiz`;
-                
-                showQuestion();
-            } catch (error) {
-                console.error('Error starting quiz:', error);
-                alert('Error starting quiz. Please try again.');
+            currentQuiz = selectQuestions(category);
+            if (currentQuiz.length === 0) {
+                alert('No questions available for this category.');
+                return;
             }
+            
+            currentQuestionIndex = 0;
+            score = 0;
+            
+            document.getElementById('categoryScreen').classList.add('hidden');
+            document.getElementById('quizContainer').classList.remove('hidden');
+            document.getElementById('quizTitle').textContent = `${categoryNames[category]} Quiz`;
+            
+            showQuestion();
         }
 
         function showQuestion() {
@@ -751,6 +941,7 @@
                 const optionDiv = document.createElement('div');
                 optionDiv.className = 'option';
                 optionDiv.textContent = option;
+                optionDiv.setAttribute('aria-label', `Option ${index + 1}: ${option}`);
                 optionDiv.onclick = () => {
                     if (!answerSelected) selectAnswer(index);
                 };
@@ -921,9 +1112,13 @@
         }
 
         window.onclick = function(event) {
-            const modal = document.getElementById('backModal');
-            if (event.target === modal) {
+            const backModal = document.getElementById('backModal');
+            const renameModal = document.getElementById('renameModal');
+            if (event.target === backModal) {
                 hideBackModal();
+            }
+            if (event.target === renameModal) {
+                hideRenameModal();
             }
         }
     </script>
