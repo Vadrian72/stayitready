@@ -504,17 +504,109 @@
             color: #ef5350;
         }
         
-        @media (max-width: 768px) {
-            .container { padding: 20px; margin: 10px; }
-            .main-title { font-size: 2em; }
-            .logo { font-size: 2.5em; }
-            .quiz-header { flex-direction: column; gap: 10px; }
-            .question-header { flex-direction: column; gap: 5px; }
-            .logo-image { max-width: 200px; }
-            .brand-name { font-size: 2.2em; }
-            .share-buttons { flex-direction: column; }
-            .share-btn { min-width: 200px; }
-            .side-panel { width: 280px; left: -280px; }
+@media (max-width: 768px) {
+    .container { 
+        padding: 10px; 
+        margin: 0; 
+        width: 100vw;
+        border-radius: 0;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    .main-title { font-size: 1.6em; margin-bottom: 15px; }
+    .logo { font-size: 2em; margin-bottom: 15px; }
+    .brand-name { font-size: 1.8em; }
+    .brand-subtitle { font-size: 1em; }
+    .logo-image { max-width: 150px; }
+    
+    /* Quiz header optimization - fixed position */
+    .quiz-header { 
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        background: rgba(45, 45, 68, 0.95);
+        backdrop-filter: blur(10px);
+        padding: 10px;
+        margin: 0;
+        border-radius: 0;
+    }
+    .quiz-container {
+        padding-top: 80px; /* Space for fixed header */
+    }
+    .back-btn {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+    
+    /* Compact question layout */
+    .question-header { 
+        flex-direction: row; 
+        gap: 10px; 
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .question {
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    .question h3 {
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        line-height: 1.4;
+    }
+    .option {
+        padding: 12px;
+        font-size: 0.9em;
+        margin-bottom: 8px;
+    }
+    .options { gap: 8px; }
+    
+    /* Progress and controls */
+    .progress-bar { height: 6px; margin-bottom: 15px; }
+    .btn { 
+        padding: 12px 20px; 
+        font-size: 0.95em; 
+        margin: 5px;
+    }
+    
+    /* Side panel */
+    .side-panel { width: 250px; left: -250px; padding: 15px; }
+    .hamburger-btn { 
+        top: 15px; 
+        left: 15px; 
+        padding: 8px 10px;
+        font-size: 16px;
+    }
+    
+    /* Category grid */
+    .category-grid { gap: 10px; margin: 15px auto; }
+    
+    /* Results optimization */
+    .score-display { 
+        font-size: 1.2em; 
+        margin: 15px 0; 
+        padding: 15px; 
+    }
+    .share-buttons { 
+        flex-direction: column; 
+        gap: 8px;
+    }
+    .share-btn { 
+        min-width: auto; 
+        width: 100%;
+        padding: 10px;
+        font-size: 0.85em;
+    }
+    
+    /* Feedback section */
+    .feedback { 
+        margin-top: 15px; 
+        padding: 12px; 
+        font-size: 0.9em;
+    }
+}
         }
     </style>
 </head>
